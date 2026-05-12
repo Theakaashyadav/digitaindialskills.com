@@ -252,6 +252,129 @@ button:hover{
         font-size:26px;
     }
 }
+
+/* =========================
+   FULL RESPONSIVE AUTH PAGE
+========================= */
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+}
+
+/* Laptop */
+@media(max-width:1200px){
+    .auth-page{
+        padding:65px 18px;
+    }
+}
+
+/* Tablet */
+@media(max-width:768px){
+    .auth-page{
+        min-height:auto;
+        padding:55px 16px;
+    }
+
+    .login-box{
+        max-width:430px;
+        padding:36px 26px;
+        border-radius:22px;
+    }
+
+    .login-box h2{
+        font-size:27px;
+    }
+
+    .login-info{
+        font-size:13px;
+    }
+}
+
+/* Mobile */
+@media(max-width:520px){
+    .auth-page{
+        padding:45px 14px;
+    }
+
+    .auth-page::before{
+        width:240px;
+        height:240px;
+        top:-80px;
+        right:-90px;
+    }
+
+    .auth-page::after{
+        width:220px;
+        height:220px;
+        bottom:-90px;
+        left:-80px;
+    }
+
+    .login-box{
+        max-width:100%;
+        padding:32px 20px;
+        border-radius:20px;
+    }
+
+    .login-box h2{
+        font-size:24px;
+    }
+
+    .tab-buttons{
+        gap:8px;
+    }
+
+    .tab-buttons button{
+        font-size:13px;
+        padding:11px 8px;
+        border-radius:12px;
+    }
+
+    .input-box label{
+        font-size:13px;
+    }
+
+    .input-box input{
+        padding:14px;
+        font-size:14px;
+    }
+
+    button{
+        padding:14px;
+        font-size:15px;
+    }
+
+    .security-note{
+        font-size:12px;
+        padding:11px;
+    }
+}
+
+/* Small mobile */
+@media(max-width:360px){
+    .auth-page{
+        padding:35px 10px;
+    }
+
+    .login-box{
+        padding:28px 14px;
+    }
+
+    .login-box h2{
+        font-size:22px;
+    }
+
+    .tab-buttons{
+        flex-direction:column;
+    }
+}
 </style>
 </head>
 
