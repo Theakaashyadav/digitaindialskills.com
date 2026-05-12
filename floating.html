@@ -144,4 +144,100 @@
         font-size:30px;
     }
 }
+
+/* =========================
+   FULL RESPONSIVE FLOATING CONTACT
+========================= */
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+/* Tablet */
+@media(max-width:768px){
+    .dise-floating-contact{
+        right:18px;
+        bottom:18px;
+        gap:14px;
+    }
+
+    .dise-float-btn{
+        width:56px;
+        height:56px;
+    }
+
+    .dise-call-btn i{
+        font-size:21px;
+    }
+
+    .dise-whatsapp-btn i{
+        font-size:31px;
+    }
+}
+
+/* Mobile */
+@media(max-width:576px){
+    .dise-floating-contact{
+        right:14px;
+        bottom:14px;
+        gap:12px;
+    }
+
+    .dise-float-btn{
+        width:50px;
+        height:50px;
+    }
+
+    .dise-call-btn i{
+        font-size:19px;
+    }
+
+    .dise-whatsapp-btn i{
+        font-size:28px;
+    }
+}
+
+/* Small Mobile */
+@media(max-width:380px){
+    .dise-floating-contact{
+        right:10px;
+        bottom:10px;
+        gap:10px;
+    }
+
+    .dise-float-btn{
+        width:46px;
+        height:46px;
+    }
+
+    .dise-call-btn i{
+        font-size:18px;
+    }
+
+    .dise-whatsapp-btn i{
+        font-size:26px;
+    }
+}
+
+/* Landscape mobile */
+@media(max-height:480px){
+    .dise-floating-contact{
+        flex-direction:row;
+        right:12px;
+        bottom:12px;
+        gap:10px;
+    }
+
+    .dise-float-btn{
+        width:46px;
+        height:46px;
+    }
+}
 </style>
