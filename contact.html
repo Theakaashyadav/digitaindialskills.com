@@ -1,0 +1,227 @@
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+
+  <div class="contact-container">
+
+    <div class="contact-info">
+      <span class="contact-tag">Get In Touch</span>
+      <h2>Contact Us</h2>
+      <p>
+        Have questions about our courses? Fill out the form and our team will contact you soon.
+      </p>
+
+      <div class="contact-detail">
+        <strong>📍 Address</strong>
+        <span>Your institute address here</span>
+      </div>
+
+      <div class="contact-detail">
+        <strong>📞 Phone</strong>
+        <span>+91 98765 43210</span>
+      </div>
+
+      <div class="contact-detail">
+        <strong>✉️ Email</strong>
+        <span>info@example.com</span>
+      </div>
+    </div>
+
+    <form class="contact-form">
+      <div class="form-group">
+        <input type="text" placeholder="Your Name" required>
+      </div>
+
+      <div class="form-group">
+        <input type="email" placeholder="Your Email" required>
+      </div>
+
+      <div class="form-group">
+        <input type="tel" placeholder="Phone Number" required>
+      </div>
+
+      <div class="form-group">
+        <select required>
+          <option value="">Select Course</option>
+          <option>Web Development</option>
+          <option>Digital Marketing</option>
+          <option>Computer Basics</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <textarea placeholder="Your Message" rows="5"></textarea>
+      </div>
+
+      <button type="submit" class="contact-btn">Send Message</button>
+    </form>
+
+  </div>
+
+</section>
+
+
+<style>
+    /* CONTACT SECTION */
+
+.contact-section{
+    padding:45px 18px;
+    background:transparent;
+}
+
+.contact-container{
+    width:100%;
+    max-width:1450px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:40px;
+    padding:60px 50px;
+    border-radius:36px;
+    background:
+      radial-gradient(circle at top left,rgba(194,165,109,0.24),transparent 28%),
+      radial-gradient(circle at bottom right,rgba(84,122,149,0.24),transparent 32%),
+      var(--gradient-section);
+    border:1px solid rgba(255,255,255,0.16);
+    overflow:hidden;
+}
+
+.contact-info{
+    color:var(--white);
+}
+
+.contact-tag{
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(194,165,109,0.55);
+    color:var(--accent-light);
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.contact-info h2{
+    font-size:42px;
+    margin-bottom:18px;
+    font-weight:900;
+}
+
+.contact-info p{
+    color:#E8EDF2;
+    line-height:1.8;
+    margin-bottom:28px;
+}
+
+.contact-detail{
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.16);
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:16px;
+}
+
+.contact-detail strong{
+    display:block;
+    color:var(--accent-light);
+    margin-bottom:6px;
+}
+
+.contact-detail span{
+    color:#E8EDF2;
+}
+
+.contact-form{
+    background:rgba(255,255,255,0.90);
+    padding:34px;
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,0.7);
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:15px 18px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    outline:none;
+    font-size:15px;
+    color:var(--text);
+    background:var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 4px rgba(194,165,109,0.16);
+}
+
+.contact-btn{
+    width:100%;
+    border:none;
+    padding:16px 24px;
+    border-radius:16px;
+    background:var(--gradient-gold);
+    color:var(--dark);
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    transition:0.35s ease;
+}
+
+.contact-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 32px rgba(194,165,109,0.35);
+}
+
+@media(max-width:768px){
+    .contact-container{
+        grid-template-columns:1fr;
+        padding:40px 22px;
+        border-radius:28px;
+    }
+
+    .contact-info h2{
+        font-size:32px;
+    }
+
+    .contact-form{
+        padding:24px;
+    }
+}
+
+/* FLOATING CONTACT BUTTONS */
+
+.floating-contact{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    z-index:9999;
+}
+
+/* MAIN BUTTON */
+
+.float-btn{
+    position:relative;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    overflow:hidden;
+    transition:0.35s ease;
+    box-shadow:0 14px 35px rgba(0,0,0,0.22);
+    border:2px solid rgba(255,255,255,0.18);
+}
+
+</style>

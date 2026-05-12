@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+    --primary:#547A95;
+    --primary-dark:#3f6179;
+    --secondary:#2C3947;
+    --secondary-dark:#1f2a35;
+    --accent:#C2A56D;
+    --accent-dark:#a88950;
+    --accent-light:#f4ead6;
+    --gold:#C2A56D;
+    --dark:#1b2732;
+    --text:#3e4c59;
+    --muted:#6b7b88;
+    --light:#E8EDF2;
+    --white:#ffffff;
+    --border:#d8e0e7;
+    --gradient-main:linear-gradient(135deg,#547A95,#2C3947);
+    --gradient-premium:linear-gradient(135deg,#1b2732,#2C3947,#547A95);
+    --gradient-gold:linear-gradient(135deg,#e3cf9d,#C2A56D,#9e814d);
+    --gradient-soft:linear-gradient(135deg,#dce4eb,#E8EDF2,#f4ead6);
+    --gradient-section:linear-gradient(135deg,#2C3947,#3f6179,#547A95);
+    --shadow-light:rgba(44,57,71,0.14);
+    --shadow-medium:rgba(44,57,71,0.22);
+    --shadow:0 18px 45px rgba(44,57,71,0.16);
+    --shadow-hover:0 28px 70px rgba(84,122,149,0.32);
+    --radius:24px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:var(--gradient-soft);
+    color:var(--text);
+}
+
+/* Gallery Section */
+.gallery-section{
+    min-height:100vh;
+    padding:90px 8%;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.gallery-section::before{
+    content:"";
+    position:absolute;
+    width:360px;
+    height:360px;
+    border-radius:50%;
+    background:rgba(194,165,109,0.18);
+    top:80px;
+    left:-120px;
+}
+
+.gallery-section::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(84,122,149,0.16);
+    bottom:60px;
+    right:-100px;
+}
+
+.gallery-header{
+    position:relative;
+    z-index:2;
+    max-width:760px;
+    margin:0 auto 55px;
+}
+
+.gallery-header span{
+    display:inline-block;
+    color:var(--accent-dark);
+    background:var(--accent-light);
+    padding:8px 22px;
+    border-radius:30px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:16px;
+}
+
+.gallery-header h1{
+    font-size:46px;
+    color:var(--dark);
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+.gallery-header p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:16px;
+}
+
+/* Gallery Grid */
+.gallery{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    grid-auto-rows:220px;
+    gap:22px;
+}
+
+/* Gallery Item */
+.gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:var(--radius);
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(255,255,255,0.65);
+    background:var(--white);
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.45s ease;
+}
+
+.gallery-item:hover{
+    box-shadow:var(--shadow-hover);
+}
+
+.gallery-item:hover img{
+    transform:scale(1.12);
+    filter:brightness(0.72);
+}
+
+.gallery-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(27,39,50,0.75), transparent);
+    opacity:0;
+    transition:0.35s ease;
+    z-index:1;
+}
+
+.gallery-item:hover::before{
+    opacity:1;
+}
+
+.gallery-item::after{
+    content:"View Image";
+    position:absolute;
+    bottom:18px;
+    left:20px;
+    color:var(--white);
+    background:rgba(194,165,109,0.9);
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    opacity:0;
+    transform:translateY(12px);
+    transition:0.35s ease;
+    z-index:2;
+}
+
+.gallery-item:hover::after{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Pinterest Layout */
+.gallery-item.tall{
+    grid-row:span 2;
+}
+
+.gallery-item.wide{
+    grid-column:span 2;
+}
+
+/* Lightbox */
+#lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(27,39,50,0.94);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:25px;
+}
+
+#lightbox img{
+    max-width:92%;
+    max-height:88%;
+    border-radius:18px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.55);
+    animation:zoomIn 0.3s ease;
+    border:4px solid var(--accent);
+}
+
+#lightbox .close{
+    position:absolute;
+    top:24px;
+    right:34px;
+    width:48px;
+    height:48px;
+    background:var(--gradient-gold);
+    color:var(--dark);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+#lightbox .close:hover{
+    transform:rotate(90deg);
+}
+
+@keyframes zoomIn{
+    from{
+        transform:scale(0.75);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .gallery-section{
+        padding:65px 5%;
+    }
+
+    .gallery-header h1{
+        font-size:34px;
+    }
+
+    .gallery{
+        grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+        grid-auto-rows:160px;
+        gap:15px;
+    }
+
+    .gallery-item.wide{
+        grid-column:span 1;
+    }
+
+    .gallery-item.tall{
+        grid-row:span 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<section class="gallery-section">
+
+    <div class="gallery-header">
+        <span>Our Gallery</span>
+        <h1>Moments That Define Our Work</h1>
+        <p>
+            Explore our collection of professional spaces, teamwork, creativity,
+            innovation, and successful business moments.
+        </p>
+    </div>
+
+    <div class="gallery">
+
+        <div class="gallery-item wide">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Team Work">
+        </div>
+
+        <div class="gallery-item tall">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=900&auto=format&fit=crop" alt="Business Meeting">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=900&auto=format&fit=crop" alt="Office Space">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=900&auto=format&fit=crop" alt="Discussion">
+        </div>
+
+        <div class="gallery-item tall">
+            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=900&auto=format&fit=crop" alt="Planning">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=900&auto=format&fit=crop" alt="Team Collaboration">
+        </div>
+
+        <div class="gallery-item wide">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop" alt="Innovation">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?q=80&w=900&auto=format&fit=crop" alt="Office Team">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop" alt="Corporate Work">
+        </div>
+
+        <div class="gallery-item tall">
+            <img src="https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?q=80&w=900&auto=format&fit=crop" alt="Founder">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=900&auto=format&fit=crop" alt="Presentation">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=900&auto=format&fit=crop" alt="Startup Team">
+        </div>
+
+        <div class="gallery-item wide">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Digital Work">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=900&auto=format&fit=crop" alt="Analytics">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=900&auto=format&fit=crop" alt="Meeting Room">
+        </div>
+
+        <div class="gallery-item tall">
+            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=900&auto=format&fit=crop" alt="Team Discussion">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=900&auto=format&fit=crop" alt="Workspace">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=900&auto=format&fit=crop" alt="Business Work">
+        </div>
+
+    </div>
+</section>
+
+<div id="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" alt="Gallery Preview">
+</div>
+
+<div id="footer"></div>
+
+<script>
+/* Load Header */
+fetch("header.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+
+    if(menuBtn && navLinks){
+        menuBtn.onclick = () => {
+            navLinks.classList.toggle("show");
+        };
+    }
+});
+
+/* Load Footer */
+fetch("footer.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("footer").innerHTML = data;
+});
+
+fetch("floating.html")
+  .then(res => res.text())
+  .then(data => {
+    document.body.insertAdjacentHTML("beforeend", data);
+  });
+
+/* Lightbox */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll(".gallery-item img").forEach(img => {
+    img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+    });
+});
+
+closeBtn.onclick = () => {
+    lightbox.style.display = "none";
+};
+
+lightbox.onclick = (e) => {
+    if(e.target !== lightboxImg){
+        lightbox.style.display = "none";
+    }
+};
+
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+        lightbox.style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>

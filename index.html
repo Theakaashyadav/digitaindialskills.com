@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital India Education</title>
+
+<style>
+:root{
+    --primary:#547A95;
+    --primary-dark:#3f6179;
+
+    --secondary:#2C3947;
+    --secondary-dark:#1f2a35;
+
+    --accent:#C2A56D;
+    --accent-dark:#a88950;
+    --accent-light:#f4ead6;
+
+    --gold:#C2A56D;
+
+    --dark:#1b2732;
+    --text:#3e4c59;
+    --muted:#6b7b88;
+    --light:#E8EDF2;
+    --white:#ffffff;
+    --border:#d8e0e7;
+
+    --gradient-main:linear-gradient(135deg,#547A95,#2C3947);
+    --gradient-premium:linear-gradient(135deg,#1b2732,#2C3947,#547A95);
+    --gradient-gold:linear-gradient(135deg,#e3cf9d,#C2A56D,#9e814d);
+    --gradient-soft:linear-gradient(135deg,#dce4eb,#E8EDF2,#f4ead6);
+    --gradient-section:linear-gradient(135deg,#2C3947,#3f6179,#547A95);
+
+    --shadow-light:rgba(44,57,71,0.14);
+    --shadow-medium:rgba(44,57,71,0.22);
+
+    --shadow:0 18px 45px rgba(44,57,71,0.16);
+    --shadow-hover:0 28px 70px rgba(84,122,149,0.32);
+
+    --radius:24px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:linear-gradient(135deg,#dce4eb,#E8EDF2,#f4ead6);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+section{
+    padding:45px 20px;
+}
+
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+}
+
+h2.section-title{
+    text-align:center;
+    font-size:44px;
+    font-weight:900;
+    margin-bottom:16px;
+    color:var(--dark);
+}
+
+h2.section-title span{
+    background:var(--gradient-gold);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:var(--muted);
+    font-size:18px;
+    max-width:720px;
+     margin:0 auto 35px;
+    line-height:1.8;
+}
+
+/* HERO SECTION */
+
+.hero{
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+
+    /* MAIN IMAGE */
+    background:
+      linear-gradient(rgba(15,23,42,0.72), rgba(15,23,42,0.72)),
+      url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1800&auto=format&fit=crop') center center/cover no-repeat;
+
+    animation: heroSlider 22s infinite ease-in-out;
+}
+
+/* IMAGE SLIDER */
+@keyframes heroSlider{
+
+    0%,20%{
+        background:
+        linear-gradient(rgba(15,23,42,0.72), rgba(15,23,42,0.72)),
+        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1800&auto=format&fit=crop') center center/cover no-repeat;
+    }
+
+    25%,45%{
+        background:
+        linear-gradient(rgba(15,23,42,0.72), rgba(15,23,42,0.72)),
+        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1800&auto=format&fit=crop') center center/cover no-repeat;
+    }
+
+    50%,70%{
+        background:
+        linear-gradient(rgba(15,23,42,0.72), rgba(15,23,42,0.72)),
+        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1800&auto=format&fit=crop') center center/cover no-repeat;
+    }
+
+    75%,100%{
+        background:
+        linear-gradient(rgba(15,23,42,0.72), rgba(15,23,42,0.72)),
+        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1800&auto=format&fit=crop') center center/cover no-repeat;
+    }
+}
+
+/* DARK OVERLAY EFFECT */
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at top right,rgba(194,165,109,0.25),transparent 28%),
+      radial-gradient(circle at bottom left,rgba(84,122,149,0.22),transparent 30%);
+    z-index:1;
+}
+
+/* GLOW CIRCLE */
+.hero::after{
+    content:"";
+    position:absolute;
+    width:340px;
+    height:340px;
+    border-radius:50%;
+    background:rgba(194,165,109,0.14);
+    top:-120px;
+    right:-100px;
+    filter:blur(10px);
+    z-index:1;
+}
+
+.hero-content{
+    max-width:760px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(194,165,109,0.55);
+    padding:11px 22px;
+    border-radius:50px;
+    margin-bottom:26px;
+    font-size:15px;
+    font-weight:700;
+    color:#f4ead6;
+    backdrop-filter:blur(10px);
+}
+
+.hero h1{
+    font-size:64px;
+    line-height:1.12;
+    margin-bottom:24px;
+    font-weight:900;
+    letter-spacing:-1.5px;
+    text-shadow:0 4px 20px rgba(0,0,0,0.35);
+}
+
+.hero h1 span{
+    background:var(--gradient-gold);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.8;
+    color:#E8EDF2;
+    margin-bottom:40px;
+    max-width:680px;
+    text-shadow:0 2px 10px rgba(0,0,0,0.35);
+}
+
+.hero-buttons{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px 32px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:800;
+    transition:0.35s ease;
+}
+
+.btn-primary{
+    background:var(--gradient-gold);
+    color:var(--dark);
+    box-shadow:0 14px 32px rgba(194,165,109,0.35);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 42px rgba(194,165,109,0.48);
+}
+
+.btn-secondary{
+    border:2px solid rgba(232,237,242,0.78);
+    color:var(--white);
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(6px);
+}
+
+.btn-secondary:hover{
+    background:var(--light);
+    color:var(--dark);
+    transform:translateY(-4px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+    .hero{
+        min-height:85vh;
+        padding:100px 0;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+}
+
+@media(max-width:768px){
+
+    .hero{
+        text-align:center;
+    }
+
+    .hero-content{
+        max-width:100%;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero p{
+        font-size:16px;
+        line-height:1.7;
+    }
+
+    .btn{
+        width:100%;
+    }
+}
+
+/* STATUS SECTION */
+/* STATUS SECTION */
+
+.stats{
+    /* REMOVE BACKGROUND */
+    background:transparent;
+
+    /* GAP FROM HERO */
+     margin-top:25px;
+
+    position:relative;
+    z-index:5;
+
+    /* REDUCE BOTTOM GAP */
+     padding:0 18px 18px;
+}
+
+/* SAME WIDTH AS COURSES */
+
+.stats .container{
+    width:100%;
+    max-width:1450px;
+    margin:auto;
+}
+
+/* STATUS CARD WRAPPER */
+
+.stats-wrapper{
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at top left,rgba(194,165,109,0.28),transparent 28%),
+      radial-gradient(circle at bottom right,rgba(84,122,149,0.36),transparent 32%),
+      linear-gradient(135deg,#1f2b38,#2C3947 45%,#3f6179);
+
+    border-radius:32px;
+    box-shadow:0 24px 60px rgba(31,43,56,0.28);
+
+    padding:48px 34px;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+
+    border:1px solid rgba(255,255,255,0.16);
+}
+.stats-wrapper::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,rgba(255,255,255,0.18),transparent 35%,rgba(194,165,109,0.12));
+    pointer-events:none;
+}
+
+.stat-card{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    padding:32px 18px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.11);
+    border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(12px);
+    transition:0.35s ease;
+    overflow:hidden;
+}
+
+.stat-card::before{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:rgba(194,165,109,0.18);
+    top:-35px;
+    right:-35px;
+    transition:0.35s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 22px 42px rgba(0,0,0,0.22);
+    border-color:rgba(194,165,109,0.8);
+    background:rgba(255,255,255,0.16);
+}
+
+.stat-card:hover::before{
+    width:130px;
+    height:130px;
+    background:rgba(194,165,109,0.28);
+}
+
+.stat-card h3{
+    font-size:52px;
+    background:linear-gradient(135deg,#f8e6b0,#c2a56d,#fff2c6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:10px;
+    font-weight:900;
+    letter-spacing:-1px;
+    text-shadow:0 8px 24px rgba(0,0,0,0.18);
+}
+
+.stat-card p{
+    color:#f4f7fa;
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:0.3px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+    .stats-wrapper{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:576px){
+    .stats{
+        margin-top:-45px;
+        padding:0 14px 55px;
+    }
+
+    .stats-wrapper{
+        grid-template-columns:1fr;
+        padding:28px 18px;
+        border-radius:24px;
+    }
+
+    .stat-card h3{
+        font-size:42px;
+    }
+
+    .stat-card p{
+        font-size:15px;
+    }
+}
+/* =========================
+   COURSES SECTION
+========================= */
+
+.courses{
+    position:relative;
+    overflow:hidden;
+    padding:35px 18px;
+
+    /* REMOVE BACKGROUND */
+    background:transparent;
+}
+
+/* ENTIRE SECTION CARD */
+
+.courses .container{
+    position:relative;
+    z-index:2;
+    overflow:hidden;
+
+    width:100%;
+    max-width:1450px;
+    margin:auto;
+
+    background:rgba(255,255,255,0.70);
+    border:1px solid rgba(255,255,255,0.7);
+    backdrop-filter:blur(14px);
+    border-radius:34px;
+    padding:60px 50px;
+     box-shadow:none;
+}
+
+.courses .container::before{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:rgba(194,165,109,0.16);
+    top:-120px;
+    right:-100px;
+}
+
+.courses .container::after{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:rgba(84,122,149,0.12);
+    bottom:-100px;
+    left:-80px;
+}
+
+/* TITLE */
+
+.section-title{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    font-size:46px;
+    font-weight:900;
+    margin-bottom:18px;
+    color:var(--dark);
+    letter-spacing:-1px;
+}
+
+.section-subtitle{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:760px;
+    margin:0 auto 55px;
+    font-size:18px;
+    line-height:1.8;
+    color:var(--text);
+}
+
+/* GRID */
+
+.course-grid{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+}
+
+/* CARD */
+
+.course-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    background:rgba(255,255,255,0.86);
+    border:1px solid rgba(255,255,255,0.75);
+    backdrop-filter:blur(12px);
+    transition:0.4s ease;
+    box-shadow:0 18px 45px rgba(44,57,71,0.12);
+
+    /* FIX BUTTON POSITION */
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.course-card:hover{
+    transform:translateY(-14px);
+    box-shadow:0 26px 60px rgba(44,57,71,0.22);
+    border-color:rgba(194,165,109,0.45);
+}
+
+/* IMAGE */
+
+.course-image{
+    position:relative;
+    overflow:hidden;
+}
+
+.course-image::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom,transparent 45%,rgba(27,39,50,0.65));
+    z-index:1;
+}
+
+
+
+.course-image img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    display:block;
+    transition:0.5s ease;
+}
+
+.course-card:hover .course-image img{
+    transform:scale(1.1);
+}
+
+/* CONTENT */
+
+.course-content{
+    padding:30px;
+
+    /* FIX BUTTON POSITION */
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.course-content h3{
+    font-size:26px;
+    margin-bottom:14px;
+    color:var(--dark);
+    font-weight:900;
+    letter-spacing:-0.5px;
+}
+
+.course-content p{
+    color:var(--text);
+    line-height:1.8;
+    margin-bottom:24px;
+    font-size:16px;
+
+    /* PUSH BUTTON TO BOTTOM */
+    flex:1;
+}
+
+/* BUTTON */
+
+.course-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    text-decoration:none;
+    padding:13px 22px;
+    border-radius:14px;
+    background:rgba(84,122,149,0.10);
+    color:var(--primary-dark);
+    font-weight:800;
+    transition:0.35s ease;
+
+    /* SAME WIDTH/POSITION */
+    width:max-content;
+    margin-top:auto;
+}
+
+.course-btn:hover{
+    background:var(--gradient-gold);
+    color:var(--dark);
+    transform:translateX(6px);
+    box-shadow:0 14px 28px rgba(194,165,109,0.35);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+    .course-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .section-title{
+        font-size:38px;
+    }
+}
+
+@media(max-width:768px){
+
+    .courses{
+        padding:70px 14px;
+    }
+
+    .courses .container{
+        padding:40px 22px;
+        border-radius:26px;
+    }
+
+    .course-grid{
+        grid-template-columns:1fr;
+        gap:24px;
+    }
+
+    .section-title{
+        font-size:32px;
+    }
+
+    .section-subtitle{
+        font-size:16px;
+        margin-bottom:40px;
+    }
+
+    .course-content{
+        padding:24px;
+    }
+
+    .course-content h3{
+        font-size:23px;
+    }
+
+    .course-image img{
+        height:220px;
+    }
+}
+
+/* WHY CHOOSE US */
+
+.why-us{
+    position:relative;
+    overflow:hidden;
+     padding:35px 18px;
+
+    /* REMOVE BACKGROUND */
+    background:transparent;
+}
+
+/* ENTIRE SECTION AS CARD */
+
+.why-us .container{
+    position:relative;
+    overflow:hidden;
+    width:100%;
+    max-width:1450px;
+    margin:auto;
+    padding:60px 50px;
+    border-radius:36px;
+
+    /* BACKGROUND ONLY ON MAIN CARD */
+    background:
+      radial-gradient(circle at top left,rgba(194,165,109,0.25),transparent 28%),
+      radial-gradient(circle at bottom right,rgba(84,122,149,0.24),transparent 32%),
+      var(--gradient-section);
+
+    border:1px solid rgba(255,255,255,0.16);
+    box-shadow:none;
+}
+
+.why-us .container::before{
+    content:"";
+    position:absolute;
+    width:340px;
+    height:340px;
+    border-radius:50%;
+    background:rgba(194,165,109,0.15);
+    top:-130px;
+    right:-120px;
+}
+
+.why-us .container::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(84,122,149,0.18);
+    bottom:-110px;
+    left:-90px;
+}
+
+.why-us .section-title,
+.why-us .section-subtitle,
+.why-grid{
+    position:relative;
+    z-index:2;
+}
+
+.why-us .section-title{
+    color:var(--white);
+}
+
+.why-us .section-subtitle{
+    color:#E8EDF2;
+}
+
+/* 3 CARDS IN ONE ROW */
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+}
+
+.why-card{
+    position:relative;
+    overflow:hidden;
+    background:rgba(255,255,255,0.11);
+    padding:34px;
+    border-radius:28px;
+    transition:0.4s ease;
+    border:1px solid rgba(255,255,255,0.18);
+    color:var(--white);
+    backdrop-filter:blur(12px);
+    box-shadow:0 16px 40px rgba(0,0,0,0.14);
+}
+
+.why-card::before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(194,165,109,0.16);
+    top:-42px;
+    right:-42px;
+    transition:0.4s ease;
+}
+
+.why-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,0.16),transparent 45%);
+    opacity:0;
+    transition:0.4s ease;
+}
+
+.why-card:hover{
+    transform:translateY(-10px);
+    background:linear-gradient(135deg,#1b2732,#2C3947);
+    box-shadow:0 24px 55px rgba(0,0,0,0.28);
+    border-color:rgba(194,165,109,0.7);
+}
+
+.why-card:hover::before{
+    transform:scale(1.7);
+    background:rgba(194,165,109,0.28);
+}
+
+.why-card:hover::after{
+    opacity:1;
+}
+
+.why-icon{
+    position:relative;
+    z-index:2;
+    width:72px;
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    margin-bottom:24px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#fff2c6,#c2a56d);
+    color:var(--dark);
+    box-shadow:0 14px 30px rgba(194,165,109,0.28);
+}
+
+.why-card h3{
+    position:relative;
+    z-index:2;
+    font-size:25px;
+    margin-bottom:14px;
+    font-weight:900;
+}
+
+.why-card p{
+    position:relative;
+    z-index:2;
+    color:#dce4eb;
+    line-height:1.8;
+    transition:0.3s;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+    .why-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:768px){
+    .why-us{
+        padding:70px 14px;
+    }
+
+    .why-us .container{
+        padding:42px 22px;
+        border-radius:28px;
+    }
+
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+    .why-card{
+        padding:30px;
+    }
+}
+
+/* TESTIMONIALS */
+
+.testimonials{
+    position:relative;
+    overflow:hidden;
+    padding:35px 18px;
+    /* SAME PAGE BACKGROUND */
+    background:none;
+}
+
+/* ENTIRE SECTION AS MAIN CARD */
+
+.testimonials .container{
+    position:relative;
+    overflow:hidden;
+    width:100%;
+    max-width:1450px;
+    margin:auto;
+    padding:60px 50px;
+    border-radius:36px;
+
+    background:
+      radial-gradient(circle at top left,rgba(84,122,149,0.22),transparent 30%),
+      radial-gradient(circle at bottom right,rgba(194,165,109,0.28),transparent 30%),
+      linear-gradient(135deg,#dce4eb,#E8EDF2,#f4ead6);
+
+    border:1px solid rgba(255,255,255,0.7);
+    box-shadow:0 30px 80px rgba(44,57,71,0.16);
+}
+
+/* DECORATION */
+
+.testimonials .container::before{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:rgba(194,165,109,0.14);
+    top:-130px;
+    right:-120px;
+}
+
+.testimonials .container::after{
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    background:rgba(84,122,149,0.14);
+    bottom:-90px;
+    left:-80px;
+}
+
+.testimonials .section-title,
+.testimonials .section-subtitle,
+.testimonial-grid{
+    position:relative;
+    z-index:2;
+}
+
+/* GRID */
+
+.testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+/* CARD */
+
+.testimonial-card{
+    position:relative;
+    overflow:hidden;
+    background:rgba(255,255,255,0.72);
+    padding:38px;
+    border-radius:28px;
+    box-shadow:0 16px 40px rgba(44,57,71,0.12);
+    border:1px solid rgba(255,255,255,0.7);
+    transition:0.4s ease;
+    backdrop-filter:blur(12px);
+}
+
+.testimonial-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 24px 55px rgba(44,57,71,0.22);
+    border-color:rgba(194,165,109,0.5);
+}
+
+/* QUOTE */
+
+.quote{
+    font-size:78px;
+    color:#d9c58e;
+    position:absolute;
+    top:6px;
+    right:24px;
+    font-weight:900;
+    opacity:0.45;
+}
+
+/* TEXT */
+
+.testimonial-card p{
+    color:var(--text);
+    line-height:1.9;
+    margin-bottom:26px;
+    position:relative;
+    z-index:2;
+    font-size:16px;
+}
+
+/* STUDENT INFO */
+
+.student-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.student-info img{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid var(--accent-light);
+    box-shadow:0 10px 22px rgba(0,0,0,0.12);
+}
+
+.student-info h4{
+    font-size:18px;
+    margin-bottom:4px;
+    color:var(--dark);
+    font-weight:800;
+}
+
+.student-info span{
+    color:var(--primary-dark);
+    font-size:14px;
+    font-weight:700;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+    .testimonial-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:768px){
+
+    .testimonials{
+        padding:70px 14px;
+    }
+
+    .testimonials .container{
+        padding:42px 22px;
+        border-radius:28px;
+    }
+
+    .testimonial-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:480px){
+
+    .testimonial-card{
+        padding:25px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div id="header"></div>
+  <!-- HERO SECTION -->
+
+  <section class="hero">
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="hero-tag">
+          🇮🇳 Empowering Students Through Digital Learning
+        </div>
+
+        <h1>
+          Learn Skills for the Future with Digital India Education
+        </h1>
+
+        <p>
+          Join thousands of students learning industry-ready skills in technology,
+          programming, digital marketing, and professional development through
+          modern online education.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary">Explore Courses</a>
+          <a href="#" class="btn btn-secondary">Get Started</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- STATUS SECTION -->
+
+  <section class="stats">
+    <div class="container">
+
+      <div class="stats-wrapper">
+
+        <div class="stat-card">
+          <h3>10K+</h3>
+          <p>Students Enrolled</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>120+</h3>
+          <p>Online Courses</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>95%</h3>
+          <p>Success Rate</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>50+</h3>
+          <p>Expert Mentors</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- OUR COURSES -->
+
+<section class="courses">
+
+  <div class="container">
+
+    <h2 class="section-title">Our Courses</h2>
+
+    <p class="section-subtitle">
+      Industry-focused programs designed to help students build practical
+      skills and achieve career success.
+    </p>
+
+    <div class="course-grid">
+
+      <!-- BASIC COMPUTER -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Basic Computer Course">
+        </div>
+
+        <div class="course-content">
+          <h3>Basic Computer Course</h3>
+
+          <p>
+            Learn computer fundamentals, typing, internet usage,
+            Windows operations, and essential digital skills.
+          </p>
+
+          <a href="basic-computer-course.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ADVANCED COMPUTER -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Advanced Computer Courses">
+        </div>
+
+        <div class="course-content">
+          <h3>Advanced Computer Courses</h3>
+
+          <p>
+            Master advanced applications, productivity tools,
+            professional software, and practical computer concepts.
+          </p>
+
+          <a href="advanced-computer-courses.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- AI WITH ML -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" alt="AI with ML">
+        </div>
+
+        <div class="course-content">
+          <h3>AI with ML</h3>
+
+          <p>
+            Learn Artificial Intelligence and Machine Learning
+            concepts with real-world projects and applications.
+          </p>
+
+          <a href="ai-with-ml.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- MS OFFICE -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop" alt="MS Office Training">
+        </div>
+
+        <div class="course-content">
+          <h3>MS Office Training</h3>
+
+          <p>
+            Gain expertise in MS Word, Excel, PowerPoint,
+            Outlook, and office productivity tools.
+          </p>
+
+          <a href="ms-office-training.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- TALLY -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1200&auto=format&fit=crop" alt="Tally with GST">
+        </div>
+
+        <div class="course-content">
+          <h3>Tally with GST</h3>
+
+          <p>
+            Learn accounting, GST billing, inventory management,
+            taxation, and financial reporting using Tally.
+          </p>
+
+          <a href="tally-with-gst.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- WEB DESIGNING -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop" alt="Web Designing & Development">
+        </div>
+
+        <div class="course-content">
+          <h3>Web Designing & Development</h3>
+
+          <p>
+            Learn HTML, CSS, JavaScript, responsive design,
+            frontend development, and live website creation.
+          </p>
+
+          <a href="web-designing-development.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- GRAPHIC DESIGNING -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop" alt="Graphic Designing">
+        </div>
+
+        <div class="course-content">
+          <h3>Graphic Designing</h3>
+
+          <p>
+            Create logos, banners, posters, social media graphics,
+            and branding materials using professional tools.
+          </p>
+
+          <a href="graphic-designing.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- DIGITAL MARKETING -->
+
+      <div class="course-card">
+
+        <div class="course-image">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="Digital Marketing">
+        </div>
+
+        <div class="course-content">
+          <h3>Digital Marketing</h3>
+
+          <p>
+            Master SEO, social media marketing, content creation,
+            Google Ads, and online branding strategies.
+          </p>
+
+          <a href="digital-marketing.html" class="course-btn">
+            Explore Course →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+  <!-- WHY CHOOSE US -->
+
+<section class="why-us">
+
+  <div class="container">
+
+    <h2 class="section-title">Why Choose Us</h2>
+
+    <p class="section-subtitle">
+      We focus on quality education, practical learning, and career-oriented
+      training for every student.
+    </p>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-icon">🎓</div>
+
+        <h3>Expert Trainers</h3>
+
+        <p>
+          Learn from experienced professionals with real-world
+          industry expertise and teaching excellence.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">💻</div>
+
+        <h3>Practical Learning</h3>
+
+        <p>
+          Gain hands-on experience through projects,
+          assignments, and live practical sessions.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">📜</div>
+
+        <h3>Certification</h3>
+
+        <p>
+          Receive valuable certificates after course completion
+          to strengthen your professional profile.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+
+        <h3>Career Support</h3>
+
+        <p>
+          Get guidance for interviews, resume building,
+          internships, and job opportunities.
+        </p>
+      </div>
+
+      <!-- NEW CARD -->
+
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+
+        <h3>100% Skill Development</h3>
+
+        <p>
+          Improve technical and professional skills with
+          industry-based training and real-world practice.
+        </p>
+      </div>
+
+      <!-- NEW CARD -->
+
+      <div class="why-card">
+        <div class="why-icon">🌐</div>
+
+        <h3>Modern Infrastructure</h3>
+
+        <p>
+          Learn in a smart classroom environment with
+          updated systems, high-speed internet, and latest tools.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- TESTIMONIALS -->
+
+  <section class="testimonials">
+
+    <div class="container">
+
+      <h2 class="section-title">Student Testimonials</h2>
+
+      <p class="section-subtitle">
+        Hear what our students say about their learning experience
+        and career growth.
+      </p>
+
+      <div class="testimonial-grid">
+
+        <div class="testimonial-card">
+
+          <div class="quote">“</div>
+
+          <p>
+            The web development course helped me build confidence
+            and improve my coding skills. The practical projects
+            were extremely helpful.
+          </p>
+
+          <div class="student-info">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+
+            <div>
+              <h4>Rahul Sharma</h4>
+              <span>Web Development Student</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="testimonial-card">
+
+          <div class="quote">“</div>
+
+          <p>
+            Excellent teaching methods and supportive mentors.
+            I learned digital marketing from scratch and now
+            work as a freelancer.
+          </p>
+
+          <div class="student-info">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="">
+
+            <div>
+              <h4>Priya Verma</h4>
+              <span>Digital Marketing Student</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="testimonial-card">
+
+          <div class="quote">“</div>
+
+          <p>
+            The learning environment was amazing. I improved
+            my computer knowledge and got better opportunities
+            after completing the course.
+          </p>
+
+          <div class="student-info">
+            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="">
+
+            <div>
+              <h4>Aman Yadav</h4>
+              <span>Computer Basics Student</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  <div id="contact-form"></div>
+<div id="footer"></div>
+  <script>
+        // Load Header
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+
+        // Attach menu button after header loads
+        const menuBtn = document.querySelector(".menu-btn");
+        const navLinks = document.querySelector(".nav-links");
+
+        if (menuBtn) {
+          menuBtn.onclick = () => {
+            navLinks.classList.toggle("show");
+          };
+        }
+      });
+
+    // Load Footer
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer").innerHTML = data);
+      
+      fetch("contact.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("contact-form").innerHTML = data;
+  });
+
+  fetch("floating.html")
+  .then(res => res.text())
+  .then(data => {
+    document.body.insertAdjacentHTML("beforeend", data);
+  });
+  </script>
+</body>
+</html>

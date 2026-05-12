@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Submitted Forms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <style>
+:root{
+    --primary:#547A95;
+    --primary-dark:#3f6179;
+    --secondary:#2C3947;
+    --secondary-dark:#1f2a35;
+    --accent:#C2A56D;
+    --accent-dark:#a88950;
+    --accent-light:#f4ead6;
+    --gold:#C2A56D;
+    --dark:#1b2732;
+    --text:#3e4c59;
+    --muted:#6b7b88;
+    --light:#E8EDF2;
+    --white:#ffffff;
+    --border:#d8e0e7;
+    --gradient-main:linear-gradient(135deg,#547A95,#2C3947);
+    --gradient-premium:linear-gradient(135deg,#1b2732,#2C3947,#547A95);
+    --gradient-gold:linear-gradient(135deg,#e3cf9d,#C2A56D,#9e814d);
+    --gradient-soft:linear-gradient(135deg,#dce4eb,#E8EDF2,#f4ead6);
+    --gradient-section:linear-gradient(135deg,#2C3947,#3f6179,#547A95);
+    --shadow-light:rgba(44,57,71,0.14);
+    --shadow-medium:rgba(44,57,71,0.22);
+    --shadow:0 18px 45px rgba(44,57,71,0.16);
+    --shadow-hover:0 28px 70px rgba(84,122,149,0.32);
+    --radius:24px;
+}
+
+/* PAGE SAFE WRAPPER */
+.dise-list-container,
+.dise-list-container *{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;/* BASIC SAFE RESET */
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+body{
+    background:var(--gradient-soft);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+}
+
+/* HEADER / FOOTER SAFE */
+#header,
+#footer{
+    width:100%;
+    max-width:100%;
+    display:block;
+    position:relative;
+    z-index:9999;
+    overflow:visible;
+}
+
+/* IMPORTANT: header content should not exceed page width */
+#header *,
+#footer *{
+    box-sizing:border-box;
+}
+
+/* PAGE CONTENT WRAPPER */
+.dise-list-page{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+    padding:40px 16px;
+}
+
+/* MAIN CONTAINER */
+.dise-list-container{
+    width:calc(100% - 32px);
+    max-width:1100px;
+    margin:40px auto;
+    background:rgba(255,255,255,0.92);
+    padding:28px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,0.75);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+}
+
+body{
+    background:var(--gradient-soft);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+}
+
+/* HEADER FOOTER SAFE */
+#header,
+#footer{
+    width:100%;
+    display:block;
+    position:relative;
+    z-index:50;
+}
+
+/* MAIN CONTAINER */
+.dise-list-container{
+    width:calc(100% - 32px);
+    max-width:1100px;
+    margin:40px auto;
+    background:rgba(255,255,255,0.92);
+    padding:28px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,0.75);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.dise-list-container::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:7px;
+    background:var(--gradient-gold);
+}
+
+/* TITLE */
+.dise-list-title{
+    margin:0 0 24px;
+    padding:18px 20px;
+    color:var(--white);
+    background:var(--gradient-premium);
+    border-radius:18px;
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:0.4px;
+    box-shadow:0 12px 28px var(--shadow-light);
+}
+
+/* TOP BAR */
+.dise-list-top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    margin-bottom:24px;
+    flex-wrap:wrap;
+    background:rgba(255,255,255,0.82);
+    padding:16px;
+    border-radius:18px;
+    border:1px solid var(--border);
+    box-shadow:0 10px 24px var(--shadow-light);
+}
+
+/* SEARCH INPUT */
+.dise-list-search{
+    padding:13px 15px;
+    width:320px;
+    max-width:100%;
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    color:var(--dark);
+    background:var(--white);
+    transition:0.25s ease;
+}
+
+.dise-list-search:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(84,122,149,0.18);
+}
+
+/* BUTTONS */
+.dise-list-refresh-btn,
+.dise-list-view-btn,
+.view-btn{
+    padding:12px 18px;
+    border:none;
+    background:var(--gradient-main);
+    color:var(--white);
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:800;
+    text-decoration:none;
+    display:inline-block;
+    box-shadow:0 10px 22px rgba(84,122,149,0.28);
+    transition:0.25s ease;
+}
+
+.dise-list-refresh-btn:hover,
+.dise-list-view-btn:hover,
+.view-btn:hover{
+    transform:translateY(-2px);
+    background:var(--gradient-premium);
+    box-shadow:var(--shadow-hover);
+}
+
+/* TABLE WRAPPER */
+.dise-list-table-wrapper{
+    width:100%;
+    overflow-x:auto;
+    border-radius:18px;
+    border:1px solid var(--border);
+    box-shadow:0 12px 30px var(--shadow-light);
+    background:var(--white);
+}
+
+/* TABLE */
+.dise-list-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:800px;
+    background:var(--white);
+}
+
+.dise-list-table th,
+.dise-list-table td{
+    padding:15px 14px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.dise-list-table th{
+    background:var(--secondary);
+    color:var(--white);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.4px;
+}
+
+.dise-list-table td{
+    color:var(--text);
+    font-weight:600;
+}
+
+.dise-list-table tbody tr:nth-child(even){
+    background:#f7f9fb;
+}
+
+.dise-list-table tr:hover{
+    background:var(--accent-light);
+}
+
+/* LOADER */
+.dise-list-loader{
+    text-align:center;
+    padding:36px;
+    font-size:18px;
+    color:var(--primary-dark);
+    font-weight:800;
+    background:rgba(255,255,255,0.75);
+    border:1px dashed var(--primary);
+    border-radius:18px;
+}
+
+/* STATUS BADGES */
+.dise-status-badge,
+.status-badge{
+    padding:7px 13px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:800;
+    display:inline-block;
+    text-transform:uppercase;
+    letter-spacing:0.4px;
+}
+
+.dise-status-paid,
+.status-paid{
+    background:#dcfce7;
+    color:#15803d;
+    border:1px solid #86efac;
+}
+
+.dise-status-pending,
+.status-pending{
+    background:var(--accent-light);
+    color:var(--accent-dark);
+    border:1px solid var(--accent);
+}
+
+.dise-status-failed,
+.status-failed{
+    background:#fee2e2;
+    color:#b91c1c;
+    border:1px solid #fca5a5;
+}
+
+.dise-status-created,
+.status-created{
+    background:#e8edf2;
+    color:var(--primary-dark);
+    border:1px solid var(--primary);
+}
+
+/* MOBILE */
+@media(max-width:700px){
+    .dise-list-container{
+        width:calc(100% - 20px);
+        margin:24px auto;
+        padding:18px;
+        border-radius:18px;
+    }
+
+    .dise-list-title{
+        font-size:19px;
+        text-align:center;
+        padding:15px;
+    }
+
+    .dise-list-top-bar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .dise-list-search,
+    .dise-list-refresh-btn,
+    .dise-list-view-btn,
+    .view-btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .dise-list-table th,
+    .dise-list-table td{
+        padding:12px;
+        font-size:13px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div id="header"></div>
+    <div class="dise-list-container">
+    <h2 class="dise-list-title">Submited Forms List</h2>
+
+    <div class="dise-list-top-bar">
+        <input 
+            type="text" 
+            id="searchInput" 
+            class="dise-list-search" 
+            placeholder="Search by name, mobile, form id..."
+        >
+
+        <button class="dise-list-refresh-btn" onclick="loadForms()">Refresh</button>
+    </div>
+
+    <div class="dise-list-table-wrapper">
+        <div id="loader" class="dise-list-loader">Loading data...</div>
+
+        <table id="formsTable" class="dise-list-table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Form ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Payment</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+<div id="footer"></div>
+    <script>
+
+        /* Load Header */
+fetch("../header.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+
+    if(menuBtn && navLinks){
+        menuBtn.onclick = () => {
+            navLinks.classList.toggle("show");
+        };
+    }
+});
+
+/* Load Footer */
+fetch("../footer.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("footer").innerHTML = data;
+});
+
+
+
+
+        const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby4MyAlwkcQhoDZSBBdiHwWrEfq-tz8PG_KrmxZxn9FLWsWm9FI-qBDqBc3ziEa4xKsUA/exec";
+
+        let allForms = [];
+
+        function loadForms() {
+            document.getElementById("loader").style.display = "block";
+            document.getElementById("formsTable").style.display = "none";
+
+            const callbackName = "callback_" + Date.now();
+
+            window[callbackName] = function (response) {
+                if (response.status === "success") {
+                    allForms = response.data || [];
+                    renderTable(allForms);
+                } else {
+                    alert(response.message || "Failed to load data");
+                }
+
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("formsTable").style.display = "table";
+
+                delete window[callbackName];
+                document.body.removeChild(script);
+            };
+
+            const script = document.createElement("script");
+            script.src = APP_SCRIPT_URL + "?action=getForms&callback=" + callbackName;
+            document.body.appendChild(script);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById("tableBody");
+            tbody.innerHTML = "";
+
+            if (data.length === 0) {
+                tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align:center;">No forms found</td>
+        </tr>
+      `;
+                return;
+            }
+
+            [...data].reverse().forEach(row => {
+
+                const formId = row["Form ID"] || "";
+
+                const paymentStatus =
+                    row["Payment Status"] ||
+                    row["Status"] ||
+                    "PENDING";
+
+                const status = String(paymentStatus).toUpperCase();
+
+                let statusClass = "status-pending";
+
+                if (status === "PAID" || status === "SUCCESS") {
+                    statusClass = "status-paid";
+                }
+                else if (status === "FAILED") {
+                    statusClass = "status-failed";
+                }
+                else if (status === "CREATED") {
+                    statusClass = "status-created";
+                }
+
+                const tr = document.createElement("tr");
+
+                tr.innerHTML = `
+        <td>${formatDate(row["Timestamp"])}</td>
+
+        <td>
+          <strong>${formId}</strong>
+        </td>
+
+        <td>${row["Name"] || ""}</td>
+
+        <td>${row["Mobile"] || ""}</td>
+
+        <td>
+          <span class="status-badge ${statusClass}">
+            ${status}
+          </span>
+        </td>
+
+        <td>
+          <a class="view-btn"
+             href="view-form.html?form_id=${encodeURIComponent(formId)}">
+             View
+          </a>
+        </td>
+      `;
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        function formatDate(value) {
+            if (!value) return "";
+
+            const date = new Date(value);
+
+            if (isNaN(date.getTime())) {
+                return value;
+            }
+
+            return date.toLocaleString("en-IN");
+        }
+
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const keyword = this.value.toLowerCase();
+
+            const filtered = allForms.filter(row => {
+                return (
+                    String(row["Form ID"] || "").toLowerCase().includes(keyword) ||
+                    String(row["Name"] || "").toLowerCase().includes(keyword) ||
+                    String(row["Mobile"] || "").toLowerCase().includes(keyword)
+                );
+            });
+
+            renderTable(filtered);
+        });
+
+        loadForms();
+    </script>
+
+</body>
+
+</html>

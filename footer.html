@@ -1,0 +1,264 @@
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box brand-box">
+      <div class="footer-logo">
+        <a href="../../index.html">
+          <img src="../../images/logo1.png" alt="Wedme Pandit Logo">
+        </a>
+      </div>
+
+      <p>
+  Digital India SkillS Computer Education is dedicated to empowering students with modern computer knowledge and practical digital skills for a brighter future.
+
+  We provide quality education and professional training in courses such as Basic Computer, Advanced Excel, Tally, Web Designing, Programming, Digital Marketing, Graphic Designing, and other IT-related skills, helping students become confident, career-ready, and digitally empowered.
+</p>
+
+      <!-- CONTACT -->
+      <div class="footer-contact">
+        <p><i class="fas fa-phone"></i> +91-8796342637</p>
+        <p><i class="fas fa-envelope"></i>abc@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../index.html#service">Courses</a></li>
+        <li><a href="../../gallary.html">Gallery</a></li>
+      </ul>
+    </div>
+
+
+    <div class="social-box">
+      <div>
+        <h3>Social media</h3>
+        <div class="social-icons">
+
+
+          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="office-address">
+        <h3>Office Address</h3>
+        <p>D-35, 2nd FLOOR, OLD PLOT NO. 2-A, <br>PANCHPARMESHWAR MANDIRQ LAXMI NAGAR NEAR DOMINOS PARKING DELHI 110092.</p>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom-bar">
+    <div class="bottom-content">
+      © 2026 WEDMEPANDIT.COM | All Rights Reserved
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--gradient-premium);
+  color: var(--light);
+  font-family: "Poppins", Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: var(--accent);
+  opacity: 0.14;
+  border-radius: 50%;
+  top: -80px;
+  right: -70px;
+  filter: blur(70px);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 25px;
+  display: grid;
+  grid-template-columns: 1.5fr 0.8fr 1fr;
+  gap: 45px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-box,
+.social-box {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(232,237,242,0.14);
+  border-radius: 18px;
+  padding: 25px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 35px rgba(44,57,71,0.22);
+}
+
+.footer-logo {
+  margin-bottom: 18px;
+}
+
+.footer-logo img {
+  height: 58px;
+  max-width: 230px;
+  background: var(--white);
+  padding: 5px;
+  border-radius: 12px;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.footer-logo img:hover {
+  transform: scale(1.05);
+}
+
+.footer-box p,
+.office-address p {
+  color: rgba(232,237,242,0.78);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.footer-box h3,
+.social-box h3 {
+  color: var(--accent);
+  font-size: 20px;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.footer-box h3::after,
+.social-box h3::after {
+  content: "";
+  width: 45px;
+  height: 3px;
+  background: var(--gradient-gold);
+  display: block;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+.footer-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-box ul li {
+  margin-bottom: 12px;
+}
+
+.footer-box ul li a {
+  color: rgba(232,237,242,0.78);
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+  color: var(--accent);
+  padding-left: 6px;
+}
+
+.footer-contact {
+  margin-top: 18px;
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.footer-contact i {
+  color: var(--accent);
+}
+
+.social-icons {
+  display: flex;
+  gap: 14px;
+  margin: 12px 0 28px;
+}
+
+.social-icons a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 21px;
+  text-decoration: none;
+  background: rgba(232,237,242,0.12);
+  border: 1px solid rgba(232,237,242,0.18);
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px) scale(1.08);
+}
+
+.social-icons a:first-child:hover {
+  background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+}
+
+.social-icons a:last-child:hover {
+  background: #ff0000;
+}
+
+.office-address {
+  margin-top: 25px;
+}
+
+.bottom-bar {
+  background: rgba(27,39,50,0.72);
+  text-align: center;
+  padding: 15px 10px;
+  border-top: 1px solid rgba(232,237,242,0.12);
+  position: relative;
+  z-index: 1;
+}
+
+.bottom-content {
+  font-size: 13px;
+  color: rgba(232,237,242,0.72);
+}
+
+@media(max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-contact p,
+  .social-icons {
+    justify-content: center;
+  }
+
+  .footer-box h3::after,
+  .social-box h3::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+</style>
