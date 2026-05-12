@@ -531,6 +531,198 @@ textarea:focus{
         max-width:100% !important;
     }
 }
+
+/* =========================
+   FULL RESPONSIVE DETAILS PAGE
+========================= */
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+}
+
+/* Laptop */
+@media(max-width:1200px){
+    .container{
+        max-width:92%;
+    }
+}
+
+/* Tablet */
+@media(max-width:900px){
+    .page-wrap{
+        padding:24px 14px;
+    }
+
+    .container{
+        max-width:100%;
+        min-height:auto;
+        padding:14px;
+    }
+
+    .details-layout{
+        grid-template-columns:1fr 150px;
+        gap:8px;
+        min-height:auto;
+    }
+
+    .form-grid{
+        grid-template-columns:repeat(2, 1fr);
+        min-height:auto;
+    }
+
+    .full{
+        grid-column:span 2;
+    }
+
+    h2{
+        font-size:15px;
+        line-height:1.4;
+    }
+
+    #photoBox{
+        min-height:180px;
+    }
+
+    #photoBox img{
+        max-width:115px !important;
+        max-height:150px !important;
+    }
+}
+
+/* Mobile */
+@media(max-width:700px){
+    .page-wrap{
+        padding:18px 10px;
+    }
+
+    .container{
+        max-width:100%;
+        min-height:auto;
+        padding:10px;
+        border-radius:14px;
+    }
+
+    .container::before{
+        inset:7px;
+    }
+
+    h2{
+        font-size:14px;
+        padding:10px;
+    }
+
+    .top-actions{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .left-actions,
+    .right-actions{
+        width:100%;
+        justify-content:center;
+    }
+
+    .back-btn,
+    .action-btn{
+        width:100%;
+        text-align:center;
+        padding:10px;
+    }
+
+    #detailsForm{
+        min-height:auto;
+    }
+
+    .details-layout{
+        grid-template-columns:1fr;
+        grid-template-areas:
+            "photo"
+            "form"
+            "sign";
+        min-height:auto;
+        gap:12px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+        min-height:auto;
+        gap:8px;
+        padding:8px;
+    }
+
+    .full{
+        grid-column:span 1;
+    }
+
+    .form-group{
+        min-height:auto;
+        padding:9px;
+    }
+
+    label{
+        font-size:9px;
+    }
+
+    input,
+    textarea{
+        font-size:12px;
+    }
+
+    #photoBox,
+    #signBox{
+        min-height:145px;
+    }
+
+    #photoBox img{
+        max-width:120px !important;
+        max-height:150px !important;
+    }
+
+    #signBox img{
+        max-width:100% !important;
+        max-height:70px !important;
+    }
+}
+
+/* Small mobile */
+@media(max-width:380px){
+    .page-wrap{
+        padding:14px 6px;
+    }
+
+    .container{
+        padding:8px;
+    }
+
+    h2{
+        font-size:12px;
+    }
+
+    .form-grid{
+        padding:6px;
+    }
+
+    .form-group{
+        padding:8px 6px;
+    }
+
+    input,
+    textarea{
+        font-size:11px;
+    }
+
+    .back-btn,
+    .action-btn{
+        font-size:11px;
+    }
+}
 </style>
 </head>
 
