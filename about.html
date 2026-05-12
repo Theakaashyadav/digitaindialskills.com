@@ -312,6 +312,242 @@ body{
         font-size:32px;
     }
 }
+
+/* =========================
+   FULL RESPONSIVE ABOUT PAGE
+========================= */
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+}
+
+/* Laptop */
+@media(max-width:1200px){
+    .about-container{
+        width:90%;
+    }
+
+    .about-row{
+        gap:35px;
+    }
+
+    .about-content{
+        padding:36px;
+    }
+
+    .about-img img{
+        height:380px;
+    }
+}
+
+/* Tablet */
+@media(max-width:900px){
+    .about-hero{
+        padding:70px 6% 95px;
+    }
+
+    .about-hero h1{
+        font-size:38px;
+        line-height:1.25;
+    }
+
+    .about-hero p{
+        font-size:16px;
+    }
+
+    .about-container{
+        width:92%;
+        padding:50px 0;
+    }
+
+    .about-row,
+    .mission-vision,
+    .values-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-row{
+        gap:28px;
+        margin-bottom:55px;
+    }
+
+    .about-row.reverse .about-img{
+        order:0;
+    }
+
+    .about-img img{
+        height:320px;
+    }
+
+    .about-content{
+        padding:30px;
+    }
+
+    .mission-section{
+        padding:50px 24px;
+        border-radius:28px;
+    }
+
+    .section-title h2,
+    .values-title h2{
+        font-size:32px;
+    }
+}
+
+/* Mobile */
+@media(max-width:600px){
+    .about-hero{
+        padding:58px 16px 78px;
+    }
+
+    .about-hero::after{
+        height:45px;
+        border-radius:35px 35px 0 0;
+    }
+
+    .about-hero span,
+    .section-title span,
+    .values-title span{
+        font-size:12px;
+        letter-spacing:2px;
+    }
+
+    .about-hero h1{
+        font-size:30px;
+    }
+
+    .about-hero p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    .about-container{
+        width:100%;
+        padding:42px 14px;
+    }
+
+    .about-row{
+        gap:22px;
+        margin-bottom:45px;
+    }
+
+    .about-img::before{
+        width:82%;
+        height:82%;
+        top:18px;
+        left:-10px;
+        border-radius:18px;
+    }
+
+    .about-img img{
+        height:240px;
+        border-radius:18px;
+    }
+
+    .about-content{
+        padding:24px 18px;
+        border-radius:18px;
+    }
+
+    .about-content .tag{
+        font-size:13px;
+        padding:8px 15px;
+    }
+
+    .about-content h2{
+        font-size:26px;
+        line-height:1.25;
+    }
+
+    .about-content p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    .mission-section{
+        padding:38px 16px;
+        border-radius:22px;
+        margin-bottom:50px;
+    }
+
+    .section-title{
+        margin-bottom:30px;
+    }
+
+    .section-title h2,
+    .values-title h2{
+        font-size:27px;
+        line-height:1.25;
+    }
+
+    .mission-vision{
+        gap:20px;
+    }
+
+    .mv-card,
+    .value-card{
+        padding:24px 18px;
+        border-radius:18px;
+    }
+
+    .mv-card h3{
+        font-size:23px;
+    }
+
+    .value-card h3{
+        font-size:20px;
+    }
+
+    .mv-card p,
+    .value-card p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    .values-section{
+        padding-bottom:50px;
+    }
+
+    .values-grid{
+        gap:20px;
+    }
+}
+
+/* Small mobile */
+@media(max-width:380px){
+    .about-hero h1{
+        font-size:26px;
+    }
+
+    .about-img img{
+        height:210px;
+    }
+
+    .about-content{
+        padding:22px 14px;
+    }
+
+    .about-content h2{
+        font-size:23px;
+    }
+
+    .section-title h2,
+    .values-title h2{
+        font-size:24px;
+    }
+
+    .mv-card,
+    .value-card{
+        padding:22px 14px;
+    }
+}
 </style>
 </head>
 
