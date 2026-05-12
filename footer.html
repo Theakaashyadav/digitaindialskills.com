@@ -261,4 +261,160 @@
     margin-right: auto;
   }
 }
+
+/* =========================
+   FULL RESPONSIVE FOOTER
+========================= */
+
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+.footer{
+  width:100%;
+}
+
+.footer-container{
+  width:100%;
+}
+
+/* Laptop */
+@media(max-width:1200px){
+  .footer-container{
+    max-width:100%;
+    padding:55px 22px;
+    gap:28px;
+    grid-template-columns:1.2fr 0.8fr 1fr;
+  }
+}
+
+/* Tablet */
+@media(max-width:900px){
+  .footer-container{
+    grid-template-columns:1fr;
+    padding:50px 20px;
+    text-align:center;
+    gap:25px;
+  }
+
+  .footer-box,
+  .social-box{
+    padding:24px 20px;
+  }
+
+  .footer-logo{
+    display:flex;
+    justify-content:center;
+  }
+
+  .footer-contact p,
+  .social-icons{
+    justify-content:center;
+  }
+
+  .footer-box h3::after,
+  .social-box h3::after{
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+/* Mobile */
+@media(max-width:600px){
+  .footer::before{
+    width:190px;
+    height:190px;
+    top:-60px;
+    right:-60px;
+  }
+
+  .footer-container{
+    padding:38px 14px;
+    gap:20px;
+  }
+
+  .footer-box,
+  .social-box{
+    padding:22px 16px;
+    border-radius:16px;
+  }
+
+  .footer-logo img{
+    height:48px;
+    max-width:180px;
+  }
+
+  .footer-box h3,
+  .social-box h3{
+    font-size:18px;
+  }
+
+  .footer-box p,
+  .office-address p,
+  .footer-box ul li a{
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  .footer-contact p{
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .social-icons{
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+
+  .social-icons a{
+    width:38px;
+    height:38px;
+    font-size:18px;
+  }
+
+  .bottom-bar{
+    padding:13px 8px;
+  }
+
+  .bottom-content{
+    font-size:12px;
+    line-height:1.6;
+  }
+}
+
+/* Small Mobile */
+@media(max-width:380px){
+  .footer-container{
+    padding:32px 10px;
+  }
+
+  .footer-box,
+  .social-box{
+    padding:18px 12px;
+  }
+
+  .footer-logo img{
+    height:42px;
+    max-width:145px;
+  }
+
+  .footer-box h3,
+  .social-box h3{
+    font-size:17px;
+  }
+
+  .social-icons a{
+    width:34px;
+    height:34px;
+    font-size:16px;
+  }
+}
 </style>
