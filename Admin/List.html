@@ -356,9 +356,20 @@ body{
 </head>
 
 <body>
+
+      <script>
+/* ADMIN LOGIN PROTECTION */
+if(localStorage.getItem("adminLogin") !== "true"){
+    window.location.href = "../auth.html";
+}
+</script>
+
 <div id="header"></div>
     <div class="dise-list-container">
+
     <h2 class="dise-list-title">Submited Forms List</h2>
+
+    <!-- <button class="dise-list-refresh-btn" onclick="adminLogout()">Logout</button> -->
 
     <div class="dise-list-top-bar">
         <input 
@@ -415,7 +426,11 @@ fetch("../footer.html")
     document.getElementById("footer").innerHTML = data;
 });
 
-
+function adminLogout(){
+    localStorage.removeItem("adminLogin");
+    localStorage.removeItem("adminId");
+    window.location.href = "../authhtml";
+}
 
 
         const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby4MyAlwkcQhoDZSBBdiHwWrEfq-tz8PG_KrmxZxn9FLWsWm9FI-qBDqBc3ziEa4xKsUA/exec";
