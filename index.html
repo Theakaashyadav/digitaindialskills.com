@@ -1035,6 +1035,327 @@ h2.section-title span{
         padding:25px;
     }
 }
+
+/* =========================
+   FULL RESPONSIVE FIX
+========================= */
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+.container{
+    width:100%;
+    max-width:1450px;
+    padding-left:0;
+    padding-right:0;
+}
+
+/* Large tablets / small laptops */
+@media(max-width:1200px){
+
+    section{
+        padding:40px 18px;
+    }
+
+    .hero h1{
+        font-size:54px;
+    }
+
+    .course-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .courses .container,
+    .why-us .container,
+    .testimonials .container{
+        padding:50px 32px;
+    }
+}
+
+/* Tablets */
+@media(max-width:992px){
+
+    h2.section-title,
+    .section-title{
+        font-size:38px;
+    }
+
+    .section-subtitle{
+        font-size:17px;
+        margin-bottom:38px;
+    }
+
+    .hero{
+        min-height:auto;
+        padding:120px 18px 90px;
+    }
+
+    .hero h1{
+        font-size:46px;
+    }
+
+    .stats-wrapper{
+        grid-template-columns:repeat(2,1fr);
+        padding:38px 24px;
+    }
+
+    .course-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:24px;
+    }
+
+    .why-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .testimonial-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+/* Mobiles */
+@media(max-width:768px){
+
+    section{
+        padding:55px 14px;
+    }
+
+    h2.section-title,
+    .section-title{
+        font-size:32px;
+        line-height:1.25;
+    }
+
+    .section-subtitle{
+        font-size:16px;
+        line-height:1.7;
+        margin-bottom:34px;
+    }
+
+    .hero{
+        min-height:auto;
+        text-align:center;
+        padding:110px 16px 75px;
+        background-position:center;
+    }
+
+    .hero-content{
+        width:100%;
+        max-width:100%;
+        margin:auto;
+    }
+
+    .hero-tag{
+        font-size:13px;
+        padding:10px 16px;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:36px;
+        line-height:1.2;
+        letter-spacing:-0.5px;
+    }
+
+    .hero p{
+        font-size:16px;
+        line-height:1.7;
+        margin-bottom:30px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        gap:14px;
+    }
+
+    .btn{
+        width:100%;
+        padding:15px 22px;
+    }
+
+    .stats{
+        margin-top:0;
+        padding:35px 14px;
+    }
+
+    .stats-wrapper{
+        grid-template-columns:1fr;
+        gap:18px;
+        padding:28px 18px;
+        border-radius:24px;
+    }
+
+    .stat-card{
+        padding:26px 16px;
+    }
+
+    .stat-card h3{
+        font-size:40px;
+    }
+
+    .courses,
+    .why-us,
+    .testimonials{
+        padding:35px 14px;
+    }
+
+    .courses .container,
+    .why-us .container,
+    .testimonials .container{
+        padding:38px 18px;
+        border-radius:24px;
+    }
+
+    .course-grid,
+    .why-grid,
+    .testimonial-grid{
+        grid-template-columns:1fr;
+        gap:22px;
+    }
+
+    .course-image img{
+        height:220px;
+    }
+
+    .course-content{
+        padding:24px;
+    }
+
+    .course-content h3{
+        font-size:22px;
+    }
+
+    .course-btn{
+        width:100%;
+    }
+
+    .why-card{
+        padding:26px;
+    }
+
+    .testimonial-card{
+        padding:28px;
+    }
+
+    .student-info{
+        align-items:flex-start;
+    }
+}
+
+/* Small mobiles */
+@media(max-width:480px){
+
+    section{
+        padding:42px 12px;
+    }
+
+    h2.section-title,
+    .section-title{
+        font-size:28px;
+    }
+
+    .section-subtitle{
+        font-size:15px;
+    }
+
+    .hero{
+        padding:95px 14px 65px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero-tag{
+        width:100%;
+        font-size:12px;
+        padding:9px 12px;
+    }
+
+    .btn{
+        font-size:14px;
+        padding:14px 18px;
+    }
+
+    .stats-wrapper,
+    .courses .container,
+    .why-us .container,
+    .testimonials .container{
+        border-radius:20px;
+    }
+
+    .stat-card h3{
+        font-size:34px;
+    }
+
+    .stat-card p{
+        font-size:14px;
+    }
+
+    .course-image img{
+        height:190px;
+    }
+
+    .course-content,
+    .why-card,
+    .testimonial-card{
+        padding:22px;
+    }
+
+    .why-icon{
+        width:60px;
+        height:60px;
+        font-size:28px;
+    }
+
+    .why-card h3,
+    .course-content h3{
+        font-size:20px;
+    }
+
+    .testimonial-card p,
+    .why-card p,
+    .course-content p{
+        font-size:15px;
+    }
+
+    .student-info img{
+        width:54px;
+        height:54px;
+    }
+}
+
+/* Extra small devices */
+@media(max-width:360px){
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    h2.section-title,
+    .section-title{
+        font-size:25px;
+    }
+
+    .courses .container,
+    .why-us .container,
+    .testimonials .container{
+        padding:30px 14px;
+    }
+}
 </style>
 </head>
 
