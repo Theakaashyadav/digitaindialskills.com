@@ -5,20 +5,21 @@
     <div class="footer-box brand-box">
       <div class="footer-logo">
         <a href="../../index.html">
-          <img src="../../images/logo1.png" alt="Wedme Pandit Logo">
+          <img src="../../images/logo1.png" alt="Digital India Skills Logo">
         </a>
       </div>
 
       <p>
-  Digital India SkillS Computer Education is dedicated to empowering students with modern computer knowledge and practical digital skills for a brighter future.
+        Digital India SkillS Computer Education is dedicated to empowering students
+        with modern computer knowledge and practical digital skills for a brighter future.
+        We provide quality education and professional training in courses such as Basic
+        Computer, Advanced Excel, Tally, Web Designing, Programming, Digital Marketing,
+        Graphic Designing, and other IT-related skills.
+      </p>
 
-  We provide quality education and professional training in courses such as Basic Computer, Advanced Excel, Tally, Web Designing, Programming, Digital Marketing, Graphic Designing, and other IT-related skills, helping students become confident, career-ready, and digitally empowered.
-</p>
-
-      <!-- CONTACT -->
       <div class="footer-contact">
         <p><i class="fas fa-phone"></i> +91-01146051145</p>
-        <p><i class="fas fa-envelope"></i>support.digitalindiaskills@gmail.com</p>
+        <p><i class="fas fa-envelope"></i> support.digitalindiaskills@gmail.com</p>
       </div>
     </div>
 
@@ -33,43 +34,50 @@
       </ul>
     </div>
 
-
+    <!-- SOCIAL -->
     <div class="social-box">
-      <div>
-        <h3>Social media</h3>
-        <div class="social-icons">
+      <h3>Social media</h3>
 
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
 
-          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://youtube.com" target="_blank">
-            <i class="fab fa-youtube"></i>
-          </a>
-        </div>
+        <a href="https://youtube.com" target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a>
       </div>
 
       <div class="office-address">
         <h3>Office Address</h3>
-        <p>D-35, 2nd FLOOR, OLD PLOT NO. 2-A, <br>PANCHPARMESHWAR MANDIRQ LAXMI NAGAR NEAR DOMINOS PARKING DELHI 110092.</p>
+        <p>
+          D-35, 2nd FLOOR, OLD PLOT NO. 2-A,<br>
+          PANCHPARMESHWAR MANDIRQ LAXMI NAGAR NEAR DOMINOS PARKING DELHI 110092.
+        </p>
       </div>
-
     </div>
-
 
   </div>
 
   <!-- BOTTOM -->
- <div class="bottom-bar">
+  <div class="bottom-bar">
     <div class="bottom-content">
+
+      <div class="footer-copy">
         © 2026 Digital India Skills | All Rights Reserved
-        
+      </div>
+
+      <div class="footer-credit">
+        Designed by
         <a href="https://www.theakaashyadav.com"
            class="footer-credit-link"
            target="_blank">
-           theakaashyadav.com
+          theakaashyadav.com
         </a>
-        
+      </div>
+
     </div>
-</div>
+  </div>
 </footer>
 
 <style>
@@ -79,6 +87,7 @@
   font-family: "Poppins", Arial, sans-serif;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .footer::before {
@@ -95,6 +104,7 @@
 }
 
 .footer-container {
+  width: 100%;
   max-width: 1200px;
   margin: auto;
   padding: 60px 25px;
@@ -232,64 +242,46 @@
   margin-top: 25px;
 }
 
+/* BOTTOM BAR */
 .bottom-bar {
-  background: rgba(27,39,50,0.72);
-  text-align: center;
-  padding: 15px 10px;
-  border-top: 1px solid rgba(232,237,242,0.12);
+  background: rgba(27,39,50,0.88);
+  padding: 16px 24px;
+  border-top: 1px solid rgba(194,165,109,0.35);
   position: relative;
   z-index: 1;
 }
 
 .bottom-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   font-size: 13px;
-  color: rgba(232,237,242,0.72);
 }
 
-@media(max-width: 900px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-logo {
-    display: flex;
-    justify-content: center;
-  }
-
-  .footer-contact p,
-  .social-icons {
-    justify-content: center;
-  }
-
-  .footer-box h3::after,
-  .social-box h3::after {
-    margin-left: auto;
-    margin-right: auto;
-  }
+.footer-copy {
+  color: #ffffff;
+  text-align: left;
+  font-weight: 500;
 }
 
-/* =========================
-   FULL RESPONSIVE FOOTER
-========================= */
-
-html,
-body{
-  width:100%;
-  max-width:100%;
-  overflow-x:hidden;
+.footer-credit {
+  color: rgba(232,237,242,0.78);
+  text-align: right;
 }
 
-*{
-  box-sizing:border-box;
+.footer-credit-link {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s ease;
 }
 
-.footer{
-  width:100%;
-}
-
-.footer-container{
-  width:100%;
+.footer-credit-link:hover {
+  color: var(--accent-light);
+  text-decoration: underline;
 }
 
 /* Laptop */
@@ -388,12 +380,21 @@ body{
   }
 
   .bottom-bar{
-    padding:13px 8px;
+    padding:14px 12px;
   }
 
   .bottom-content{
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+    gap:6px;
     font-size:12px;
-    line-height:1.6;
+    line-height:1.5;
+  }
+
+  .footer-copy,
+  .footer-credit{
+    text-align:center;
   }
 }
 
