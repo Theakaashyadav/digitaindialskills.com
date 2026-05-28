@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Structure - Digital India Computer Education</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        :root{
+            --primary:#547A95;
+            --primary-dark:#3f6179;
+            --secondary:#2C3947;
+            --secondary-dark:#1f2a35;
+            --accent:#C2A56D;
+            --accent-dark:#a88950;
+            --accent-light:#f4ead6;
+            --gold:#C2A56D;
+            --dark:#1b2732;
+            --text:#3e4c59;
+            --muted:#6b7b88;
+            --light:#E8EDF2;
+            --white:#ffffff;
+            --border:#d8e0e7;
+            --gradient-main:linear-gradient(135deg,#547A95,#2C3947);
+            --gradient-premium:linear-gradient(135deg,#1b2732,#2C3947,#547A95);
+            --gradient-gold:linear-gradient(135deg,#e3cf9d,#C2A56D,#9e814d);
+            --gradient-soft:linear-gradient(135deg,#dce4eb,#E8EDF2,#f4ead6);
+            --gradient-section: linear-gradient(135deg, #2C3947, #1b2732);
+            --shadow:0 15px 40px rgba(44,57,71,0.08);
+            --shadow-hover:0 20px 50px rgba(84,122,149,0.15);
+            --radius:16px;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:var(--gradient-soft);
+            color:var(--text);
+            min-height:100vh;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Container padding adjustment for page flow layout */
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding: 60px 5%;
+        }
+
+        /* Header Section */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header .badge {
+            display: inline-block;
+            color: var(--accent-dark);
+            background: var(--accent-light);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            color: var(--dark);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Overview Summary Cards */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .summary-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .summary-card .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .summary-card .info h3 {
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .summary-card .info p {
+            font-size: 20px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .summary-card.premium {
+            background: var(--gradient-premium);
+            border: none;
+        }
+        .summary-card.premium .icon { background: rgba(255,255,255,0.1); color: var(--accent); }
+        .summary-card.premium .info h3 { color: rgba(255,255,255,0.7); }
+        .summary-card.premium .info p { color: var(--white); }
+
+        /* Structure Table Wrapper */
+        .table-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .salary-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .salary-table th {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 18px 24px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .salary-table td {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+            color: var(--text);
+            vertical-align: middle;
+        }
+
+        .salary-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .salary-table tr:hover td {
+            background-color: rgba(232, 237, 242, 0.4);
+        }
+
+        /* Role Column Styling */
+        .role-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .role-avatar {
+            width: 38px;
+            height: 38px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .role-name h4 {
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .role-name span {
+            font-size: 12px;
+            color: var(--muted);
+            display: block;
+        }
+
+        /* Department Badge */
+        .dept-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            background: var(--light);
+            color: var(--primary-dark);
+        }
+
+        /* Salary Text Styling */
+        .salary-value {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        /* Responsive Design Rules */
+        @media (max-width: 900px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .page-container { padding: 40px 20px; }
+            .salary-table th:nth-child(2), 
+            .salary-table td:nth-child(2) { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .page-header h1 { font-size: 28px; }
+            .salary-table th, .salary-table td { padding: 14px 16px; }
+            .salary-value { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Inject Location -->
+    <div id="header"></div>
+
+    <div class="page-container">
+        
+        <header class="page-header">
+            <span class="badge">Compensation Plan</span>
+            <h1>Salary Structure</h1>
+            <p>Official payroll grades configuration matrix across academic specialists, institutional operations, administrative branches, and center networks.</p>
+        </header>
+
+        <section class="overview-grid">
+            <div class="summary-card premium">
+                <div class="icon">📈</div>
+                <div class="info">
+                    <h3>Highest Scale</h3>
+                    <p>₹30,800/mo</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="icon">👥</div>
+                <div class="info">
+                    <h3>Defined Tiers</h3>
+                    <p>4 Categories</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="icon">💼</div>
+                <div class="info">
+                    <h3>Active Roles</h3>
+                    <p>8 Portfolios</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="table-container">
+            <table class="salary-table">
+                <thead>
+                    <tr>
+                        <th>Designation / Portfolio</th>
+                        <th>Classification</th>
+                        <th>Gross Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">👨‍🏫</div>
+                                <div class="role-name">
+                                    <h4>Computer Teacher</h4>
+                                    <span>M.Tech / MCA Specialist</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Academic Faculty</span></td>
+                        <td><span class="salary-value">₹30,800</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">🔍</div>
+                                <div class="role-name">
+                                    <h4>Investigation Officer</h4>
+                                    <span>Operations Risk & Audit</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Compliance</span></td>
+                        <td><span class="salary-value">₹28,000</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">💻</div>
+                                <div class="role-name">
+                                    <h4>Computer Teacher</h4>
+                                    <span>B.Tech / BCA Degree</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Academic Faculty</span></td>
+                        <td><span class="salary-value">₹25,300</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">📝</div>
+                                <div class="role-name">
+                                    <h4>Office Clerk</h4>
+                                    <span>Data & Record Management</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Administration</span></td>
+                        <td><span class="salary-value">₹22,500</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">🏢</div>
+                                <div class="role-name">
+                                    <h4>Office In-Charge</h4>
+                                    <span>Branch Operations Supervisor</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Administration</span></td>
+                        <td><span class="salary-value">₹21,500</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">🎓</div>
+                                <div class="role-name">
+                                    <h4>Computer Teacher</h4>
+                                    <span>Diploma Certification Tier</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Academic Faculty</span></td>
+                        <td><span class="salary-value">₹20,500</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">🖥️</div>
+                                <div class="role-name">
+                                    <h4>Computer Center Head</h4>
+                                    <span>Operations Hub Leader</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Management</span></td>
+                        <td><span class="salary-value">₹20,000</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="role-cell">
+                                <div class="role-avatar">🏃‍♂️</div>
+                                <div class="role-name">
+                                    <h4>Office Attendant</h4>
+                                    <span>Support Staff & Logistics</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag">Support Tier</span></td>
+                        <td><span class="salary-value">₹19,000</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+
+     <div id="contact-form"></div>
+    <!-- Footer Inject Location -->
+    <div id="footer"></div>
+
+    <script>
+        /* Load Header Component */
+        fetch("header.html")
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("header").innerHTML = data;
+
+            const menuBtn = document.querySelector(".menu-btn");
+            const navLinks = document.querySelector(".nav-links");
+
+            if(menuBtn && navLinks){
+                menuBtn.onclick = () => {
+                    navLinks.classList.toggle("show");
+                };
+            }
+        });
+
+        /* Load Footer Component */
+        fetch("footer.html")
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("footer").innerHTML = data;
+        });
+
+        /* Load Floating Action Buttons */
+        fetch("floating.html")
+        .then(res => res.text())
+        .then(data => {
+            document.body.insertAdjacentHTML("beforeend", data);
+        });
+
+        fetch("contact.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("contact-form").innerHTML = data;
+  });
+    </script>
+
+</body>
+</html>
