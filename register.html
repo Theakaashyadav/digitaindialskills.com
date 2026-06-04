@@ -419,6 +419,83 @@ img{
     font-size:15px;
   }
 }
+
+.qr-payment-box{
+  display:none;
+  margin-top:25px;
+  padding:22px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 12px 28px var(--shadow-light);
+  text-align:center;
+}
+
+.qr-payment-box.show{
+  display:block;
+}
+
+.qr-payment-box h3{
+  color:var(--dark);
+  margin-bottom:10px;
+}
+
+.qr-payment-box img{
+  width:230px;
+  max-width:100%;
+  border-radius:16px;
+  border:4px solid var(--accent-light);
+  margin:15px auto;
+  display:block;
+}
+
+.upi-id{
+  font-weight:800;
+  color:var(--secondary);
+  margin-bottom:14px;
+}
+
+.notice-box{
+  background:var(--accent-light);
+  border-left:5px solid var(--accent);
+  padding:12px;
+  border-radius:12px;
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+.check-form-link-box{
+  margin-bottom:22px;
+  padding:16px;
+  background:var(--accent-light);
+  border:1px solid rgba(194,165,109,.45);
+  border-radius:16px;
+  text-align:center;
+  box-shadow:0 8px 18px var(--shadow-light);
+}
+
+.check-form-link-box p{
+  margin-bottom:10px;
+  font-weight:700;
+  color:var(--secondary);
+}
+
+.check-form-link{
+  display:inline-block;
+  padding:11px 22px;
+  background:var(--gradient-gold);
+  color:var(--dark);
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:800;
+  box-shadow:0 10px 22px rgba(194,165,109,.32);
+  transition:.3s ease;
+}
+
+.check-form-link:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-hover);
+}
 </style>
 </head>
 
@@ -426,6 +503,13 @@ img{
 <div id="header"></div>
   <div class="form-container">
     <h2>Apply Now</h2>
+
+    <div class="check-form-link-box">
+  <p>Already submitted your application?</p>
+  <a href="fetchbyno.html" class="check-form-link">
+    Check / Download Form
+  </a>
+</div>
  
     <form id="dataForm">
 
@@ -597,10 +681,34 @@ img{
       </div>
 
       <button type="submit" id="submitBtn" class="btn">Submit</button>
-      <p id="paymentMsg" class="payment-msg"></p>
-      <button type="button" id="payBtn" class="btn" style="display:none;">
-        Pay ₹350
-      </button>
+
+<div id="qrPaymentBox" class="qr-payment-box">
+  <h3>Pay Application Fee</h3>
+
+  <p class="notice-box">
+    Please scan the QR code and pay ₹350 application fee.
+  </p>
+
+  <!-- Replace qr-code.png with your QR image path -->
+  <img src="images/qr.jpeg" alt="UPI QR Code">
+
+  <p class="upi-id">Amount: ₹350</p>
+
+  <div class="form-group">
+    <label>UPI Reference No. *</label>
+    <input 
+      type="text" 
+      id="upiRefNo" 
+      placeholder="Enter UPI Transaction / Reference No."
+    >
+  </div>
+
+  <button type="button" id="submitUpiBtn" class="btn pay-mode">
+    Submit Payment Reference
+  </button>
+</div>
+
+<p id="paymentMsg" class="payment-msg"></p>
 
     </form>
   </div>
@@ -609,264 +717,284 @@ img{
   <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 
 
- <script>
+<script>
+fetch("header.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
 
-       // Load Header
-    fetch("header.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("header").innerHTML = data;
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
 
-        // Attach menu button after header loads
-        const menuBtn = document.querySelector(".menu-btn");
-        const navLinks = document.querySelector(".nav-links");
+    if (menuBtn) {
+      menuBtn.onclick = () => {
+        navLinks.classList.toggle("show");
+      };
+    }
+  });
 
-        if (menuBtn) {
-          menuBtn.onclick = () => {
-            navLinks.classList.toggle("show");
-          };
-        }
-      });
+fetch("footer.html")
+  .then(res => res.text())
+  .then(data => document.getElementById("footer").innerHTML = data);
 
-    // Load Footer
-    fetch("footer.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("footer").innerHTML = data);
-      
-      fetch("floating.html")
+fetch("floating.html")
   .then(res => res.text())
   .then(data => {
     document.body.insertAdjacentHTML("beforeend", data);
   });
-      
 
+const DATA_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycby4MyAlwkcQhoDZSBBdiHwWrEfq-tz8PG_KrmxZxn9FLWsWm9FI-qBDqBc3ziEa4xKsUA/exec";
 
-  const DATA_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycby4MyAlwkcQhoDZSBBdiHwWrEfq-tz8PG_KrmxZxn9FLWsWm9FI-qBDqBc3ziEa4xKsUA/exec";
+const PAYMENT_SCRIPT_URL = DATA_SCRIPT_URL;
 
-  const PAYMENT_SCRIPT_URL = DATA_SCRIPT_URL;
+const FILE_UPLOAD_URL =
+  "https://script.google.com/macros/s/AKfycbwjMQdWCZWBml3cxU6vNWUae0aj2xBu3a3VLTIm53jIw-WehqzH6yZr6tDVlA5MycE4/exec";
 
-  const FILE_UPLOAD_URL =
-    "https://script.google.com/macros/s/AKfycbwjMQdWCZWBml3cxU6vNWUae0aj2xBu3a3VLTIm53jIw-WehqzH6yZr6tDVlA5MycE4/exec";
+/* 
+  Cashfree payment gateway code kept but temporarily disabled.
+  Change this to true after gateway verification completes.
+*/
+const CASHFREE_ENABLED = false;
 
-  const cashfree = Cashfree({
-    mode: "sandbox"
+/*
+const cashfree = Cashfree({
+  mode: "sandbox"
+});
+*/
+
+let savedFormId = "";
+let savedOrderId = "";
+let formSubmitted = false;
+
+const form = document.getElementById("dataForm");
+const submitBtn = document.getElementById("submitBtn");
+const qrPaymentBox = document.getElementById("qrPaymentBox");
+const submitUpiBtn = document.getElementById("submitUpiBtn");
+const upiRefNo = document.getElementById("upiRefNo");
+const paymentMsg = document.getElementById("paymentMsg");
+
+const PRINT_PAGE_URL = "view-form.html";
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      resolve(reader.result.split(",")[1]);
+    };
+
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function getFileExtension(filename) {
+  const ext = filename.substring(filename.lastIndexOf("."));
+  return ext || ".jpg";
+}
+
+async function uploadSingleImage(file, filename) {
+  const base64Image = await fileToBase64(file);
+
+  const formData = new FormData();
+  formData.append("image", base64Image);
+  formData.append("filename", filename);
+
+  const response = await fetch(FILE_UPLOAD_URL, {
+    method: "POST",
+    body: formData
   });
 
-  let savedFormId = "";
-  let savedOrderId = "";
-  let formSubmitted = false;
+  const text = await response.text();
+  console.log("UPLOAD RESPONSE:", text);
 
-  const form = document.getElementById("dataForm");
-  const submitBtn = form.querySelector("button[type='submit']");
-  const payBtn = document.getElementById("payBtn");
-  const PRINT_PAGE_URL = "view-form.html";
+  return JSON.parse(text);
+}
 
-  if (payBtn) {
-    payBtn.style.display = "none";
+/* Cashfree code kept for future use */
+async function startCashfreePayment() {
+  if (!CASHFREE_ENABLED) {
+    return;
   }
 
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
+  if (!savedFormId) {
+    alert("Please submit form first.");
+    return;
+  }
 
-      reader.onload = () => {
-        resolve(reader.result.split(",")[1]);
-      };
+  /*
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = "Processing...";
 
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
+  try {
+    const orderResponse = await fetch(
+      PAYMENT_SCRIPT_URL + "?action=createOrder&form_id=" + encodeURIComponent(savedFormId)
+    );
+
+    const orderData = await orderResponse.json();
+
+    if (!orderData.payment_session_id) {
+      alert(orderData.message || "Payment order creation failed");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Pay ₹350";
+      return;
+    }
+
+    savedOrderId = orderData.order_id;
+
+    await cashfree.checkout({
+      paymentSessionId: orderData.payment_session_id,
+      redirectTarget: "_modal"
     });
+
+  } catch (err) {
+    console.log("Checkout cancelled or failed:", err);
+  }
+  */
+}
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  if (formSubmitted) {
+    qrPaymentBox.classList.add("show");
+    qrPaymentBox.scrollIntoView({ behavior: "smooth" });
+    return;
   }
 
-  function getFileExtension(filename) {
-    const ext = filename.substring(filename.lastIndexOf("."));
-    return ext || ".jpg";
+  const formData = new FormData(form);
+
+  const photoFile = document.getElementById("photo").files[0];
+  const signatureFile = document.getElementById("signature").files[0];
+
+  if (!photoFile || !signatureFile) {
+    alert("Please upload photo and signature.");
+    return;
   }
 
-  async function uploadSingleImage(file, filename) {
-    const base64Image = await fileToBase64(file);
+  formData.set("action", "saveForm");
 
-    const formData = new FormData();
-    formData.append("image", base64Image);
-    formData.append("filename", filename);
+  try {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Submitting...";
 
-    const response = await fetch(FILE_UPLOAD_URL, {
+    formData.delete("photo");
+    formData.delete("signature");
+
+    const formResponse = await fetch(DATA_SCRIPT_URL, {
       method: "POST",
       body: formData
     });
 
-    const text = await response.text();
-    console.log("UPLOAD RESPONSE:", text);
+    const responseText = await formResponse.text();
+    console.log("FORM RESPONSE:", responseText);
 
-    return JSON.parse(text);
-  }
-
-  async function startPayment() {
-    if (!savedFormId) {
-      alert("Please submit form first.");
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = "Processing...";
+    let formResult;
 
     try {
-      const orderResponse = await fetch(
-        PAYMENT_SCRIPT_URL + "?action=createOrder&form_id=" + encodeURIComponent(savedFormId)
-      );
-
-      const orderData = await orderResponse.json();
-      console.log("ORDER DATA:", orderData);
-
-      if (!orderData.payment_session_id) {
-        alert(orderData.message || "Payment order creation failed");
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Pay ₹350";
-        return;
-      }
-
-      savedOrderId = orderData.order_id;
-
-      await cashfree.checkout({
-        paymentSessionId: orderData.payment_session_id,
-        redirectTarget: "_modal"
-      });
-
-    } catch (err) {
-      console.log("Checkout cancelled or failed:", err);
-    }
-
-    if (savedOrderId) {
-      try {
-        const verifyResponse = await fetch(
-          PAYMENT_SCRIPT_URL + "?action=verifyPayment&order_id=" + encodeURIComponent(savedOrderId)
-        );
-
-        const verifyData = await verifyResponse.json();
-        console.log("VERIFY DATA:", verifyData);
-
-        if (verifyData.status === "PAID") {
-  alert("Payment successful. Your submitted form is opening for printout.");
-
-  submitBtn.innerHTML = "Payment Done";
-  submitBtn.disabled = true;
-
-  window.open(
-    PRINT_PAGE_URL + "?form_id=" + encodeURIComponent(savedFormId),
-    "_blank"
-  );
-
-  return;
-}
-
-      } catch (err) {
-        console.log(err);
-        alert("Payment verification failed: " + err.message);
-      }
-    }
-
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = "Pay ₹350";
-  }
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    if (formSubmitted) {
-      startPayment();
-      return;
-    }
-
-    const formData = new FormData(form);
-
-    const photoFile = document.getElementById("photo").files[0];
-    const signatureFile = document.getElementById("signature").files[0];
-
-    if (!photoFile || !signatureFile) {
-      alert("Please upload photo and signature.");
-      return;
-    }
-
-    formData.set("action", "saveForm");
-
-    try {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = "Submitting...";
-
-      formData.delete("photo");
-      formData.delete("signature");
-
-      const formResponse = await fetch(DATA_SCRIPT_URL, {
-        method: "POST",
-        body: formData
-      });
-
-      const responseText = await formResponse.text();
-      console.log("FORM RESPONSE:", responseText);
-
-      let formResult;
-
-      try {
-        formResult = JSON.parse(responseText);
-      } catch (error) {
-        alert("Apps Script did not return JSON. Check deployment.");
-        console.log("Invalid response:", responseText);
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Submit";
-        return;
-      }
-
-      console.log("FORM RESULT:", formResult);
-
-      if (formResult.status !== "success") {
-        alert(formResult.message || "Form submit failed");
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Submit";
-        return;
-      }
-
-      savedFormId = formResult.form_id;
-
-      const photoName =
-        "image" + savedFormId + getFileExtension(photoFile.name);
-
-      const signatureName =
-        "sign" + savedFormId + getFileExtension(signatureFile.name);
-
-      const photoUpload = await uploadSingleImage(photoFile, photoName);
-      const signUpload = await uploadSingleImage(signatureFile, signatureName);
-
-      if (photoUpload.status !== "success" || signUpload.status !== "success") {
-        alert("Form saved but image/signature upload failed.");
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Submit";
-        return;
-      }
-
-      alert(
-        "Form submitted successfully.\nYour Form ID is " + savedFormId +
-        "\nPhoto saved as: " + photoName +
-        "\nSignature saved as: " + signatureName +
-        "\n\nNow press the same button again to pay fees."
-      );
-
-      formSubmitted = true;
-
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = "Pay ₹350";
-
-      submitBtn.style.background = "linear-gradient(135deg, #16a34a, #22c55e)";
-      submitBtn.style.boxShadow = "0 12px 25px rgba(34, 197, 94, 0.35)";
-
-    } catch (err) {
-      console.log(err);
-      alert("Submit failed: " + err.message);
-
+      formResult = JSON.parse(responseText);
+    } catch (error) {
+      alert("Apps Script did not return JSON. Check deployment.");
+      console.log("Invalid response:", responseText);
       submitBtn.disabled = false;
       submitBtn.innerHTML = "Submit";
+      return;
     }
-  });
+
+    if (formResult.status !== "success") {
+      alert(formResult.message || "Form submit failed");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Submit";
+      return;
+    }
+
+    savedFormId = formResult.form_id;
+
+    const photoName =
+      "image" + savedFormId + getFileExtension(photoFile.name);
+
+    const signatureName =
+      "sign" + savedFormId + getFileExtension(signatureFile.name);
+
+    const photoUpload = await uploadSingleImage(photoFile, photoName);
+    const signUpload = await uploadSingleImage(signatureFile, signatureName);
+
+    if (photoUpload.status !== "success" || signUpload.status !== "success") {
+      alert("Form saved but image/signature upload failed.");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Submit";
+      return;
+    }
+
+    formSubmitted = true;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Form Submitted";
+
+    paymentMsg.innerHTML =
+      "Your Form ID is <b>" + savedFormId + "</b>. Please complete payment by scanning QR code.";
+
+    qrPaymentBox.classList.add("show");
+    qrPaymentBox.scrollIntoView({ behavior: "smooth" });
+
+  } catch (err) {
+    console.log(err);
+    alert("Submit failed: " + err.message);
+
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = "Submit";
+  }
+});
+
+submitUpiBtn.addEventListener("click", async function () {
+  const refNo = upiRefNo.value.trim();
+
+  if (!savedFormId) {
+    alert("Please submit form first.");
+    return;
+  }
+
+  if (!refNo) {
+    alert("Please enter UPI reference number.");
+    return;
+  }
+
+  try {
+    submitUpiBtn.disabled = true;
+    submitUpiBtn.innerHTML = "Submitting...";
+
+    const response = await fetch(
+      DATA_SCRIPT_URL +
+      "?action=submitUpiReference" +
+      "&form_id=" + encodeURIComponent(savedFormId) +
+      "&upi_reference=" + encodeURIComponent(refNo)
+    );
+
+    const result = await response.json();
+
+    if (result.status !== "success") {
+      alert(result.message || "UPI reference submit failed.");
+      submitUpiBtn.disabled = false;
+      submitUpiBtn.innerHTML = "Submit Payment Reference";
+      return;
+    }
+
+    alert(
+      "Your payment will verified within 12 hrs after that you can download your form"
+    );
+
+    submitUpiBtn.innerHTML = "Reference Submitted";
+    upiRefNo.disabled = true;
+
+  } catch (err) {
+    console.log(err);
+    alert("Payment reference submit failed: " + err.message);
+
+    submitUpiBtn.disabled = false;
+    submitUpiBtn.innerHTML = "Submit Payment Reference";
+  }
+});
 </script>
 
 </body>
