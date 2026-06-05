@@ -992,19 +992,22 @@ submitUpiBtn.addEventListener("click", async function () {
 
     const result = await response.json();
 
-    if (result.status !== "success") {
-      alert(result.message || "Payment screenshot save failed.");
-      submitUpiBtn.disabled = false;
-      submitUpiBtn.innerHTML = "Submit Payment Screenshot";
-      return;
-    }
+ if (result.status !== "success") {
+  alert(result.message || "Payment screenshot save failed.");
+  submitUpiBtn.disabled = false;
+  submitUpiBtn.innerHTML = "Submit Payment Screenshot";
+  return;
+}
 
-    alert(
-      "Your payment screenshot has been submitted. It will be verified within 12 hrs, after that you can download your form."
-    );
+alert(
+  "Your payment screenshot has been submitted. It will be verified within 12 hrs, after that you can download your form."
+);
 
-    submitUpiBtn.innerHTML = "Screenshot Submitted";
-    paymentScreenshot.disabled = true;
+submitUpiBtn.innerHTML = "Screenshot Submitted";
+paymentScreenshot.disabled = true;
+
+window.location.href =
+  "fetchbyno.html?form_id=" + encodeURIComponent(savedFormId);
 
   } catch (err) {
     console.log(err);
