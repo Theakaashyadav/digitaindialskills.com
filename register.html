@@ -877,7 +877,7 @@ form.addEventListener("submit", async function (e) {
 
   try {
     submitBtn.disabled = true;
-    submitBtn.innerHTML = "Submitting...";
+    submitBtn.innerHTML = "Submiting...";
 
     formData.delete("photo");
     formData.delete("signature");
@@ -902,12 +902,26 @@ form.addEventListener("submit", async function (e) {
       return;
     }
 
-    if (formResult.status !== "success") {
-      alert(formResult.message || "Form submit failed");
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = "Submit";
-      return;
-    }
+    if (formResult.status === "duplicate") {
+  alert(formResult.message || "Your form is already submitted.");
+
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = "Submit";
+
+  if (formResult.form_id) {
+    window.location.href =
+      "fetchbyno.html?form_id=" + encodeURIComponent(formResult.form_id);
+  }
+
+  return;
+}
+
+if (formResult.status !== "success") {
+  alert(formResult.message || "Form submit failed");
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = "Submit";
+  return;
+}
 
     savedFormId = formResult.form_id;
 
