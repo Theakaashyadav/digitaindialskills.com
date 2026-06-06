@@ -940,11 +940,11 @@ fetch("footer.html")
     document.getElementById("footer").innerHTML = data;
 });
 
-fetch("floating.html")
-.then(res => res.text())
-.then(data => {
-    document.body.insertAdjacentHTML("beforeend", data);
-});
+// fetch("floating.html")
+// .then(res => res.text())
+// .then(data => {
+//     document.body.insertAdjacentHTML("beforeend", data);
+// });
 
 const FORM_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby4MyAlwkcQhoDZSBBdiHwWrEfq-tz8PG_KrmxZxn9FLWsWm9FI-qBDqBc3ziEa4xKsUA/exec";
 const IMAGE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjMQdWCZWBml3cxU6vNWUae0aj2xBu3a3VLTIm53jIw-WehqzH6yZr6tDVlA5MycE4/exec";
