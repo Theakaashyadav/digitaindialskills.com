@@ -1138,10 +1138,22 @@
                         div.innerHTML = `
         <label>${field}</label>
         <select name="Payment Status" disabled>
-            <option value="PENDING" ${value === "PENDING" ? "selected" : ""}>PENDING</option>
-            <option value="PAID" ${value === "PAID" ? "selected" : ""}>PAID</option>
-            <option value="REJECT" ${value === "REJECT" ? "selected" : ""}>REJECT</option>
-        </select>
+    <option value="PENDING" ${value === "PENDING" ? "selected" : ""}>
+        PENDING
+    </option>
+
+    <option value="UNDER VERIFICATION" ${value === "UNDER VERIFICATION" ? "selected" : ""}>
+        UNDER VERIFICATION
+    </option>
+
+    <option value="PAID" ${value === "PAID" ? "selected" : ""}>
+        PAID
+    </option>
+
+    <option value="REJECTED" ${value === "REJECTED" ? "selected" : ""}>
+        REJECTED
+    </option>
+</select>
     `;
                     }
                     else {
@@ -1160,66 +1172,78 @@
         }
 
         function enableEdit() {
+            editableFields.forEach(field => {
+                const element = document.querySelector(`[name="${field}"]`);
+
+                if (!element) return;
+
+                if (field === "Payment Status") {
+                    element.disabled = false;
+                } else {
+                    element.removeAttribute("readonly");
+                }
+            });
+
+            document.getElementById("editBtn").style.display = "none";
+            document.getElementById("saveBtn").style.display = "inline-flex";
+        }
+
+        function saveFormData() {
+    const callbackName = "updateCallback_" + Date.now();
+
+    let query = "?action=updateFormData";
+    query += "&form_id=" + encodeURIComponent(formId);
+    query += "&callback=" + callbackName;
+
+    // Send all editable field values to Apps Script
     editableFields.forEach(field => {
         const element = document.querySelector(`[name="${field}"]`);
 
         if (!element) return;
 
-        if (field === "Payment Status") {
-            element.disabled = false;
-        } else {
-            element.removeAttribute("readonly");
-        }
+        query += "&" +
+            encodeURIComponent(field) +
+            "=" +
+            encodeURIComponent(element.value);
     });
 
-    document.getElementById("editBtn").style.display = "none";
-    document.getElementById("saveBtn").style.display = "inline-flex";
-}
+    window[callbackName] = function (response) {
 
-        function saveFormData() {
-            const callbackName = "updateCallback_" + Date.now();
+        if (response.status === "success") {
 
-            let query = "?action=updateFormData";
-            query += "&form_id=" + encodeURIComponent(formId);
-            query += "&callback=" + callbackName;
+            alert("Form updated successfully");
 
             editableFields.forEach(field => {
-    const element = document.querySelector(`[name="${field}"]`);
+                const element = document.querySelector(`[name="${field}"]`);
 
-    if (!element) return;
+                if (!element) return;
 
-    if (field === "Payment Status") {
-        element.disabled = true;
-    } else {
-        element.setAttribute("readonly", true);
-    }
-});
-
-            window[callbackName] = function (response) {
-                if (response.status === "success") {
-                    alert("Form updated successfully");
-
-                    editableFields.forEach(field => {
-                        const element = document.querySelector(`[name="${field}"]`);
-                        if (element) {
-                            element.setAttribute("readonly", true);
-                        }
-                    });
-
-                    document.getElementById("saveBtn").style.display = "none";
-                    document.getElementById("editBtn").style.display = "inline-flex";
+                if (field === "Payment Status") {
+                    element.disabled = true;
                 } else {
-                    alert(response.message || "Update failed");
+                    element.setAttribute("readonly", true);
                 }
+            });
 
-                delete window[callbackName];
-                document.body.removeChild(script);
-            };
+            document.getElementById("saveBtn").style.display = "none";
+            document.getElementById("editBtn").style.display = "inline-flex";
 
-            const script = document.createElement("script");
-            script.src = FORM_SCRIPT_URL + query;
-            document.body.appendChild(script);
+        } else {
+            alert(response.message || "Update failed");
         }
+
+        delete window[callbackName];
+
+        if (script.parentNode) {
+            script.parentNode.removeChild(script);
+        }
+    };
+
+    const script = document.createElement("script");
+    script.src = FORM_SCRIPT_URL + query;
+
+    document.body.appendChild(script);
+}
 
         function printForm() {
             window.print();
