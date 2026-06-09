@@ -496,6 +496,23 @@ img{
   transform:translateY(-2px);
   box-shadow:var(--shadow-hover);
 }
+
+.qr-download-btn{
+  display:inline-block;
+  margin:8px auto 18px;
+  padding:11px 22px;
+  background:var(--gradient-main);
+  color:#fff;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:800;
+  box-shadow:0 10px 22px rgba(84,122,149,.28);
+}
+
+.qr-download-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-hover);
+}
 </style>
 </head>
 
@@ -690,9 +707,13 @@ img{
   </p>
 
   <!-- Replace qr-code.png with your QR image path -->
-  <img src="images/qr.jpeg" alt="UPI QR Code">
+ <img src="images/qr.jpeg" alt="UPI QR Code">
 
-  <p class="upi-id">Amount: ₹350</p>
+<a href="images/qr.jpeg" download="UPI-QR-Code.jpeg" class="qr-download-btn">
+  Download QR
+</a>
+
+<p class="upi-id">Amount: ₹350</p>
 
   <div class="form-group">
    <label>Upload Payment Screenshot *</label>
