@@ -1,7 +1,7 @@
 <header><!-- TOP BAR -->
 <div class="top-bar">
     <div>
-        <span>📞 +91-7983518752 | +91-01146051145</span>
+        <span>📞 +91-01146051145</span>
         <span>📧 support.digitalindiaskills@gmail.com</span>
     </div>
 
@@ -49,6 +49,20 @@
 
 
 </nav></header>
+
+<div class="announcement-bar">
+    <div class="announcement-track">
+
+        <span>
+            🔔 Registration Date Has Been Extended Till 5 July 2026 • Apply Now • Limited Seats Available •
+        </span>
+
+        <span>
+            🔔 Registration Date Has Been Extended Till 5 July 2026 • Apply Now • Limited Seats Available •
+        </span>
+
+    </div>
+</div>
 
 
 
@@ -811,6 +825,89 @@ img{
         font-size:14px;
         padding:13px 18px;
     }
+}
+
+/* MOVING REGISTRATION LINE */
+
+.announcement-bar{
+    width:100%;
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        90deg,
+        #b78e45,
+        #f4ead6,
+        #b78e45
+    );
+
+    position:relative;
+    z-index:100;
+
+    height:54px;
+
+    display:flex;
+    align-items:center;
+}
+
+.announcement-track{
+
+    display:flex;
+
+    width:max-content;
+
+    white-space:nowrap;
+
+    animation:marqueeMove 18s linear infinite;
+}
+
+.announcement-track span{
+
+    display:inline-block;
+
+    padding-right:120px;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:#1b2732;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+}
+
+@keyframes marqueeMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+.announcement-bar:hover .announcement-track{
+    animation-play-state:paused;
+}
+
+@media(max-width:768px){
+
+.announcement-bar{
+    height:46px;
+}
+
+.announcement-track span{
+
+    font-size:14px;
+
+    padding-right:80px;
+
+}
+
 }
 </style>
 
