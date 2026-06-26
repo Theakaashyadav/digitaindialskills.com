@@ -437,54 +437,33 @@ function adminLogout(){
 
         let allForms = [];
 
+        
+
         function loadForms() {
-  document.getElementById("loader").style.display = "block";
-  document.getElementById("formsTable").style.display = "none";
+            document.getElementById("loader").style.display = "block";
+            document.getElementById("formsTable").style.display = "none";
 
-  setTimeout(() => {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("formsTable").style.display = "none";
+            const callbackName = "callback_" + Date.now();
 
-    alert("Network Error. Please try again later.");
+            window[callbackName] = function (response) {
+                if (response.status === "success") {
+                    allForms = response.data || [];
+                    renderTable(allForms);
+                } else {
+                    alert(response.message || "Failed to load data");
+                }
 
-    const tbody = document.getElementById("tableBody");
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="6" style="text-align:center;color:red;font-weight:700;">
-          Network Error. Please try again later.
-        </td>
-      </tr>
-    `;
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("formsTable").style.display = "table";
 
-    document.getElementById("formsTable").style.display = "table";
-  }, 800);
-}
+                delete window[callbackName];
+                document.body.removeChild(script);
+            };
 
-        // function loadForms() {
-        //     document.getElementById("loader").style.display = "block";
-        //     document.getElementById("formsTable").style.display = "none";
-
-        //     const callbackName = "callback_" + Date.now();
-
-        //     window[callbackName] = function (response) {
-        //         if (response.status === "success") {
-        //             allForms = response.data || [];
-        //             renderTable(allForms);
-        //         } else {
-        //             alert(response.message || "Failed to load data");
-        //         }
-
-        //         document.getElementById("loader").style.display = "none";
-        //         document.getElementById("formsTable").style.display = "table";
-
-        //         delete window[callbackName];
-        //         document.body.removeChild(script);
-        //     };
-
-        //     const script = document.createElement("script");
-        //     script.src = APP_SCRIPT_URL + "?action=getForms&callback=" + callbackName;
-        //     document.body.appendChild(script);
-        // }
+            const script = document.createElement("script");
+            script.src = APP_SCRIPT_URL + "?action=getForms&callback=" + callbackName;
+            document.body.appendChild(script);
+        }
 
         function renderTable(data) {
             const tbody = document.getElementById("tableBody");
