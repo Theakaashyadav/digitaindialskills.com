@@ -875,128 +875,113 @@ async function startRazorpayPayment(formId) {
   }
 }
 
-form.addEventListener("submit", function (e) {
+
+
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = "Submitting...";
+  if (formSubmitted && savedFormId) {
+    startRazorpayPayment(savedFormId);
+    return;
+  }
 
-  setTimeout(() => {
-    alert("Process Failed Try later");
+  const formData = new FormData(form);
 
-    paymentMsg.innerHTML = "Process Failed Try later";
-    paymentMsg.style.color = "red";
+  const photoFile = document.getElementById("photo").files[0];
+  const signatureFile = document.getElementById("signature").files[0];
+
+  if (!photoFile || !signatureFile) {
+    alert("Please upload photo and signature.");
+    return;
+  }
+
+  formData.set("action", "saveForm");
+
+  try {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Submitting...";
+
+    formData.delete("photo");
+    formData.delete("signature");
+
+    const formResponse = await fetch(DATA_SCRIPT_URL, {
+      method: "POST",
+      body: formData
+    });
+
+    const responseText = await formResponse.text();
+    console.log("FORM RESPONSE:", responseText);
+
+    let formResult;
+
+    try {
+      formResult = JSON.parse(responseText);
+    } catch (error) {
+      alert("Apps Script did not return JSON. Check deployment.");
+      console.log("Invalid response:", responseText);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Submit";
+      return;
+    }
+
+    if (formResult.status === "duplicate") {
+      alert(formResult.message || "Your form is already submitted.");
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Submit";
+
+      if (formResult.form_id) {
+        window.location.href =
+          "fetchbyno.html?form_id=" + encodeURIComponent(formResult.form_id);
+      }
+
+      return;
+    }
+
+    if (formResult.status !== "success") {
+      alert(formResult.message || "Form submit failed");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Submit";
+      return;
+    }
+
+    savedFormId = formResult.form_id;
+
+    const photoName =
+      "image" + savedFormId + getFileExtension(photoFile.name);
+
+    const signatureName =
+      "sign" + savedFormId + getFileExtension(signatureFile.name);
+
+    const photoUpload = await uploadSingleImage(photoFile, photoName);
+    const signUpload = await uploadSingleImage(signatureFile, signatureName);
+
+    if (photoUpload.status !== "success" || signUpload.status !== "success") {
+      alert("Form saved but image/signature upload failed.");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Submit";
+      return;
+    }
+
+    formSubmitted = true;
+
+    paymentMsg.innerHTML =
+      "Your Form ID is <b>" + savedFormId + "</b>. Please complete ₹350 payment.";
+
+    submitBtn.classList.add("pay-mode");
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = "Pay ₹350";
+
+    startRazorpayPayment(savedFormId);
+
+  } catch (err) {
+    console.log(err);
+    alert("Submit failed: " + err.message);
 
     submitBtn.disabled = false;
-    submitBtn.innerHTML = "Pay Fees 350";
-  }, 700);
+    submitBtn.innerHTML = "Submit";
+  }
 });
-
-// form.addEventListener("submit", async function (e) {
-//   e.preventDefault();
-
-//   if (formSubmitted && savedFormId) {
-//     startRazorpayPayment(savedFormId);
-//     return;
-//   }
-
-//   const formData = new FormData(form);
-
-//   const photoFile = document.getElementById("photo").files[0];
-//   const signatureFile = document.getElementById("signature").files[0];
-
-//   if (!photoFile || !signatureFile) {
-//     alert("Please upload photo and signature.");
-//     return;
-//   }
-
-//   formData.set("action", "saveForm");
-
-//   try {
-//     submitBtn.disabled = true;
-//     submitBtn.innerHTML = "Submitting...";
-
-//     formData.delete("photo");
-//     formData.delete("signature");
-
-//     const formResponse = await fetch(DATA_SCRIPT_URL, {
-//       method: "POST",
-//       body: formData
-//     });
-
-//     const responseText = await formResponse.text();
-//     console.log("FORM RESPONSE:", responseText);
-
-//     let formResult;
-
-//     try {
-//       formResult = JSON.parse(responseText);
-//     } catch (error) {
-//       alert("Apps Script did not return JSON. Check deployment.");
-//       console.log("Invalid response:", responseText);
-//       submitBtn.disabled = false;
-//       submitBtn.innerHTML = "Submit";
-//       return;
-//     }
-
-//     if (formResult.status === "duplicate") {
-//       alert(formResult.message || "Your form is already submitted.");
-
-//       submitBtn.disabled = false;
-//       submitBtn.innerHTML = "Submit";
-
-//       if (formResult.form_id) {
-//         window.location.href =
-//           "fetchbyno.html?form_id=" + encodeURIComponent(formResult.form_id);
-//       }
-
-//       return;
-//     }
-
-//     if (formResult.status !== "success") {
-//       alert(formResult.message || "Form submit failed");
-//       submitBtn.disabled = false;
-//       submitBtn.innerHTML = "Submit";
-//       return;
-//     }
-
-//     savedFormId = formResult.form_id;
-
-//     const photoName =
-//       "image" + savedFormId + getFileExtension(photoFile.name);
-
-//     const signatureName =
-//       "sign" + savedFormId + getFileExtension(signatureFile.name);
-
-//     const photoUpload = await uploadSingleImage(photoFile, photoName);
-//     const signUpload = await uploadSingleImage(signatureFile, signatureName);
-
-//     if (photoUpload.status !== "success" || signUpload.status !== "success") {
-//       alert("Form saved but image/signature upload failed.");
-//       submitBtn.disabled = false;
-//       submitBtn.innerHTML = "Submit";
-//       return;
-//     }
-
-//     formSubmitted = true;
-
-//     paymentMsg.innerHTML =
-//       "Your Form ID is <b>" + savedFormId + "</b>. Please complete ₹350 payment.";
-
-//     submitBtn.classList.add("pay-mode");
-//     submitBtn.disabled = false;
-//     submitBtn.innerHTML = "Pay ₹350";
-
-//     startRazorpayPayment(savedFormId);
-
-//   } catch (err) {
-//     console.log(err);
-//     alert("Submit failed: " + err.message);
-
-//     submitBtn.disabled = false;
-//     submitBtn.innerHTML = "Submit";
-//   }
-// });
 </script>
 
 </body>
