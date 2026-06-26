@@ -666,9 +666,16 @@
         </div>
 
         <div class="form-group">
-          <label>Date Of Birth</label>
-          <input type="date" name="dob" required>
-        </div>
+  <label>Date Of Birth</label>
+  <input
+    type="text"
+    name="dob"
+    placeholder="DD/MM/YYYY"
+    pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$"
+    title="Enter date in DD/MM/YYYY format"
+    required
+  >
+</div>
 
         <div class="form-group">
           <label>Aadhar Card No</label>
